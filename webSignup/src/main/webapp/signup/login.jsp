@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./login.css">
 </head>
 <body>
-    <form action="loginCheckServlet.do" method="post">
+    <form action="/webSignup/loginCheckServlet.do" method="post">
         <table>
             <thead>
                 <tr>
