@@ -19,7 +19,7 @@ public class WelcomeServlet extends HttpServlet {
             String id = (String) session.getAttribute("id");
             if (id != null) {
                 // 로그인된 사용자가 있을 경우 welcome.jsp로 리다이렉트
-                response.sendRedirect(request.getContextPath() + "/signup/welcome.jsp");
+                response.sendRedirect(request.getContextPath() + "/signup/success.jsp");
             } else {
                 // 로그인 정보가 없는 경우 login.jsp로 리다이렉트
                 response.sendRedirect(request.getContextPath() + "/signup/login.jsp");
