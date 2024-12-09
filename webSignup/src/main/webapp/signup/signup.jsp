@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +9,21 @@
     <link rel="stylesheet" href="./signup.css">
 </head>
 <body>
-    <form action="registerServlet.do" method="post">
+    <%
+        String error = request.getParameter("error");
+        String message = request.getParameter("message");
+        if (error != null) {
+    %>
+        <p style="color: red; text-align: center;"><%= error %></p>
+    <%
+        } else if (message != null) {
+    %>
+        <p style="color: green; text-align: center;"><%= message %></p>
+    <%
+        }
+    %>
+
+    <form action="/webSignup/registerServlet.do" method="post">
         <table>
             <thead>
                 <tr>
