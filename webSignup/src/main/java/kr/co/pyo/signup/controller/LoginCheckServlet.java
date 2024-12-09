@@ -52,7 +52,7 @@ public class LoginCheckServlet extends HttpServlet {
                     session.setAttribute("id", id);
 
                     // 로그인 성공 후 welcome 페이지로 리다이렉트
-                    response.sendRedirect(request.getContextPath() + "/signup/welcomeServlet.do");
+                    response.sendRedirect(request.getContextPath() + "/welcomeServlet.do");
                 } else {
                     // 로그인 실패 시 에러 메시지 설정 및 로그인 페이지로 이동
                     message = "아이디 또는 비밀번호가 잘못되었습니다.";
