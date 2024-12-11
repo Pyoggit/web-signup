@@ -1,0 +1,414 @@
+@charset "UTF-8";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 12px;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* header 부분 */
+header {
+  display: flex;
+  justify-content: space-between; /* 좌우 요소 간격 유지 */
+  align-items: center; /* 세로 중앙 정렬 */
+  padding: 0 20px; /* 좌우 여백 추가 */
+  width: 90%; /* 헤더 콘텐츠 너비 제한 */
+  margin: 0 auto; /* 가운데 정렬 */
+  height: 80px;
+  background-color: #fff;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* 아이콘과 텍스트 간격 */
+  font-family: "Kablammo", sans-serif;
+  font-size: 24px;
+  color: black;
+}
+
+.header-logo i {
+  font-size: 36px;
+}
+
+.header-menu {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-menu li a {
+  font-size: 18px;
+  color: black;
+  padding: 10px 15px;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.header-menu li a:hover {
+  background-color: #fff;
+  color: #166cea;
+}
+
+.header-menu a {
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.header-menu a:hover {
+  color: black;
+  background-color: blueviolet;
+}
+.dropdown {
+  position: relative;
+}
+
+div.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 160px;
+  z-index: 1;
+  box-shadow: 8px 8px 24px 8px rgba(0, 0, 0, 0.75);
+}
+
+div.dropdown-content a {
+  display: block;
+  padding: 16px 16px;
+  background-color: #ccc;
+}
+div.dropdown-content a:hover {
+  background-color: #fff;
+  color: black;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.header-icons {
+  list-style: none;
+  padding-right: 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.header-icons li {
+  margin-left: 10px;
+}
+
+.header-icons a {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: black;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.header-icons a:hover {
+  background-color: #166cea;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+
+/* section 부분 */
+div.slideshow {
+  background-color: black;
+  height: 465px;
+  width: 100%;
+  /* 최소960까지 버팀 */
+  min-width: 960px;
+  position: relative;
+}
+
+div.slideshow_slides {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+div.slideshow_slides a {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  text-align: center;
+}
+
+.slideshow_slides a {
+  position: absolute;
+}
+
+div.slideshow_nav a {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  color: white;
+  font-size: 62px;
+  transform: translateY(-50%);
+  opacity: 0.5;
+}
+
+div.slideshow_nav a.prev {
+  margin-left: -462px;
+}
+
+div.slideshow_nav a.next {
+  margin-left: 400px;
+}
+
+div.slideshow_indicator {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+div.slideshow_indicator a {
+  display: inline-block;
+  color: white;
+  padding: 7px;
+  font-size: 24px;
+}
+
+div.slideshow_indicator a.active {
+  color: rgb(213, 73, 0);
+}
+
+/* main 부분 */
+main {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+}
+
+.menu-left {
+  float: left;
+  width: 20%;
+  padding: 20px;
+  background-color: #ccc;
+  margin-left: 10px;
+}
+
+.list {
+  background-color: rgb(238, 238, 238);
+  margin: 0;
+  margin-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+}
+.list a {
+  color: black;
+  text-decoration: none;
+}
+
+.list-title {
+  font-weight: 600;
+  margin: 10px 0;
+  line-height: 1.5;
+  border-top: 1px solid rgb(196, 196, 196);
+  border-bottom: 1px solid rgb(196, 196, 196);
+  font-size: 1rem;
+}
+.list a:hover {
+  color: #333;
+  text-decoration: underline;
+}
+
+.board-content {
+  width: 75%;
+  padding: 20px;
+}
+
+.board-top h2 {
+  color: black;
+  font-size: 1.8rem;
+}
+
+.board-menu {
+  display: flex;
+  justify-content: flex-end;
+}
+.board-alert {
+  font-size: 1rem;
+}
+
+.board-filter {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.left-filter {
+  padding: 5px 5px;
+}
+.left-filter a {
+  padding: 1px 5px;
+  color: #ccc;
+  background-color: #333;
+}
+.left-filter a:hover {
+  padding: 1px 5px;
+  color: #333;
+  background-color: #ccc;
+}
+
+.right-filter a {
+  padding: 1px 5px;
+  color: #ccc;
+  background-color: #333;
+}
+.right-filter a:hover {
+  color: #333;
+  background-color: #ccc;
+}
+
+.menu-table {
+  border-spacing: 5px;
+}
+
+.menu-table td {
+  padding: 8px;
+}
+
+.menu-table a {
+  color: black;
+  text-decoration: none;
+}
+
+.menu-table a:hover {
+  color: #333;
+  text-decoration: underline;
+}
+.article-table {
+  width: 100%;
+  border-top: 3px solid #ccc;
+  border-collapse: collapse;
+}
+
+.article-table th,
+.article-table td {
+  padding: 8px;
+  font-size: 1rem;
+  border-bottom: 1px solid rgb(238, 238, 238);
+}
+
+.page-list {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.content a {
+  color: black;
+  text-decoration: none;
+}
+
+.content a:hover {
+  color: #333;
+  text-decoration: underline;
+}
+.page,
+.page-selected {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  margin: 0 5px;
+  font-size: 1rem;
+}
+
+.page-list a {
+  color: black;
+  text-decoration: none;
+  border-radius: 3px;
+  padding: 5px;
+}
+
+.page-list a:hover {
+  color: white;
+  background-color: #333;
+  text-decoration: none;
+}
+
+.write {
+  text-align: right;
+}
+
+.write a {
+  padding: 1px 5px;
+  color: #ccc;
+  background-color: #333;
+}
+.write a:hover {
+  color: #333;
+  background-color: #ccc;
+}
+
+/* Footer 부분 */
+footer {
+  background-color: #f8f8f8;
+  padding: 20px 0;
+  text-align: center;
+  border-top: 1px solid #ddd;
+  margin-top: 20px;
+}
+
+.footer-links {
+  margin-bottom: 10px;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.footer-links ul li {
+  margin: 0 10px;
+}
+
+.footer-links ul li a {
+  color: #333;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+
+.footer-links ul li a:hover {
+  color: #00c73c;
+}
+
+.footer-copyright {
+  color: #555;
+  font-size: 0.9em;
+}
+
+.footer-copyright span {
+  color: #00c73c;
+  font-weight: bold;
+}
