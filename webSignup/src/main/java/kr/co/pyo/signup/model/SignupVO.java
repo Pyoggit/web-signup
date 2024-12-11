@@ -6,6 +6,7 @@ public class SignupVO {
     private String email; 			//이메일 주소
     private String name; 			//이름
     private int birth; 				//생년월일 
+    
 	public SignupVO() {
 		super();
 		// TODO Auto-generated constructor stub
