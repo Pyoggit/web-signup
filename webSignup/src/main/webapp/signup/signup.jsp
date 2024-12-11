@@ -6,15 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/signup.css">
+    <script src="/webSignup/js/idCheck.js"></script>
 </head>
 <body>
     <div class="signup-form">
         <h1>회원가입</h1>
         <form action="${pageContext.request.contextPath}/registerServlet.do" method="post">
             <div class="int-area">
-                <input type="text" name="id" id="id" autocomplete="off" required>
-                <label for="id">아이디</label>
-            </div>
+                <div class="input-wrapper">
+                    <input type="text" name="id" id="id" autocomplete="off" required>
+                    <label for="id">아이디</label>
+                    <div class="button-wrapper">
+            					<input type="button" value="중복확인" onClick="idCheck()">
+        						</div>
+                </div>
+            </div>                  
             <div class="int-area">
                 <input type="password" name="pwd" id="pwd" autocomplete="off" required>
                 <label for="pwd">비밀번호</label>

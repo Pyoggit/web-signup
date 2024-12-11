@@ -6,6 +6,7 @@
     padding: 0;
 }
 
+
 body {
     font-family: "Noto Sans KR", sans-serif;
     background: url("") no-repeat center;
@@ -13,7 +14,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    height: 100vh;
+    height: 100%;
     padding-top: 50px;
     position: relative;
 }
@@ -115,4 +116,37 @@ body::before {
 .caption button:hover {
     color: #005bb5;
     text-decoration: none;
+}
+
+.signup-form .int-area input[type="text"] {
+    flex: 1;
+    padding-right: 10px; /* 버튼 영역 확보 */
+    font-size: 16px;
+}
+
+.signup-form .int-area input[type="button"] {
+    margin-left: 10px;
+    padding: 10px 15px;
+    font-size: 14px;
+    background-color: #166cea;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.signup-form .int-area input[type="button"]:hover {
+    background-color: #005bb5;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.signup-form .int-area input[type="button"]:active {
+    background-color: #003f8a;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
 }
