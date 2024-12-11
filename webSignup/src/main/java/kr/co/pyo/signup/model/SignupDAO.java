@@ -6,11 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import kr.co.pyo.signup.util.ConnectionPool;
 import kr.co.pyo.signup.util.DBUtility;
 
 public class SignupDAO {
 	private final String SELECT_SQL = "SELECT * FROM SIGNUP";
-	private final String SELECT_BY_ID_SQL = "SELECT * FROM SIGNUP WHERE ID = ?";
+	private final String SELECT_BY_ID_SQL = "SELECT COUNT(*) AS COUNT FROM SIGNUP WHERE ID = ?";
 	private final String SELECT_LOGIN_CHECK_SQL = "SELECT * FROM SIGNUP WHERE ID = ? AND PWD = ?";
 	private final String INSERT_SQL = "INSERT INTO SIGNUP VALUES(?,?,?,?,?)";
 	private final String DELETE_SQL = "DELETE FROM SIGNUP WHERE ID = ?";
@@ -141,5 +142,27 @@ public class SignupDAO {
 	        DBUtility.dbClose(con, pstmt);
 	    }
 	    return rs > 0; // 성공 시 true 반환
+	}
+	
+	public boolean selectIdCheck(SignupVO svo) {
+		ConnectionPool cp = ConnectionPool.getInstance();
+		Connection con = cp.dbCon();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		try {
+			pstmt = con.prepareStatement(SELECT_BY_ID_SQL);
+			pstmt.setString(1, svo.getId());
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				count = rs.getInt("COUNT");
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			cp.dbClose(con, pstmt, rs);
+		}
+		return (count != 0) ? (true) : (false);
 	}
 }
