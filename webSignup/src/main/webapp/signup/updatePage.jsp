@@ -8,7 +8,7 @@
     }
 
     SignupDAO dao = new SignupDAO();
-    SignupVO user = dao.selectByIdDB(new SignupVO(id, null, null, null, 0));
+    SignupVO user = dao.selectByIdDB(new SignupVO(id, null, null, null, null, null, null, null, null, null, null));
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -39,6 +39,30 @@
             <div class="form-group">
                 <label for="birth">생년월일</label>
                 <input type="text" id="birth" name="birth" value="<%= user.getBirth() %>" required>
+            </div>
+            <div class="form-group">
+                <label for="phone1">전화번호(앞자리)</label>
+                <input type="text" id="phone1" name="phone1" value="<%= user.getPhone1() %>" required>
+            </div>
+            <div class="form-group">
+                <label for="phone2">전화번호(중간자리)</label>
+                <input type="text" id="phone2" name="phone2" value="<%= user.getPhone2() %>" required>
+            </div>
+            <div class="form-group">
+                <label for="phone3">전화번호(뒷자리)</label>
+                <input type="text" id="phone3" name="phone3" value="<%= user.getPhone3() %>" required>
+            </div>
+            <div class="form-group">
+                <label for="zipcode">우편번호</label>
+                <input type="text" id="zipcode" name="zipcode" value="<%= user.getZipcode() %>" required>
+            </div>
+            <div class="form-group">
+                <label for="address1">주소</label>
+                <input type="text" id="address1" name="address1" value="<%= user.getAddress1() %>" required>
+            </div>
+            <div class="form-group">
+                <label for="address2">상세주소</label>
+                <input type="text" id="address2" name="address2" value="<%= user.getAddress2() %>" required>
             </div>
             <div class="btn-group">
                 <button type="submit" class="btn update">정보 수정</button>
