@@ -106,3 +106,28 @@ document.addEventListener("DOMContentLoaded", function () {
         event.target.submit();
     });
 });
+
+// 생년월일 체크 이벤트처리
+document.addEventListener("DOMContentLoaded", function () {
+        const yearInput = document.getElementById("year");
+        const monthSelect = document.getElementById("month");
+        const daySelect = document.getElementById("day");
+        const birthInput = document.getElementById("birth");
+
+        function updateBirthField() {
+            const year = yearInput.value;
+            const month = monthSelect.value;
+            const day = daySelect.value;
+
+            if (year && month && day) {
+                birthInput.value = `${year}${month.padStart(2, '0')}${day.padStart(2, '0')}`;
+            } else {
+                birthInput.value = ""; // 값이 하나라도 비어 있으면 초기화
+            }
+        }
+
+        // 이벤트 리스너 추가
+        yearInput.addEventListener("input", updateBirthField);
+        monthSelect.addEventListener("change", updateBirthField);
+        daySelect.addEventListener("change", updateBirthField);
+    });
