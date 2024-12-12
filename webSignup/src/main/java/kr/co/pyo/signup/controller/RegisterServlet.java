@@ -63,7 +63,12 @@ public class RegisterServlet extends HttpServlet {
                 pstmt.setString(1, id);
                 pstmt.setString(2, pwd);
                 pstmt.setString(3, name);
-                pstmt.setString(4, birth != null && birth.matches("\\d{8}") ? birth : null);
+                if (birth != null && birth.matches("\\d{8}")) { // 생년월일 형식 검증 (YYYYMMDD)
+                    pstmt.setString(4, birth);
+                } else {
+                    pstmt.setString(4, null); // 잘못된 값은 null로 처리
+                }
+
                 pstmt.setString(5, phone1);
                 pstmt.setString(6, phone2);
                 pstmt.setString(7, phone3);
@@ -75,24 +80,25 @@ public class RegisterServlet extends HttpServlet {
                 int result = pstmt.executeUpdate();
                 if (result > 0) {
                     message = "회원가입이 성공적으로 완료되었습니다.";
-                    response.sendRedirect("/signup/success.jsp?message=" +
-                            java.net.URLEncoder.encode(message, "UTF-8"));
+                    // 회원 이름을 welcome.jsp에 전달
+                    request.setAttribute("username", name);
+                    response.sendRedirect("/webSignup/signup/welcome.jsp");
                 } else {
                     message = "회원가입에 실패했습니다.";
-                    response.sendRedirect("/signup/signup.jsp?error=" +
+                    response.sendRedirect("/webSignup/signup/signup.jsp?error=" +
                             java.net.URLEncoder.encode(message, "UTF-8"));
                 }
             } catch (Exception e) {
                 message = "회원가입 처리 중 문제가 발생했습니다.";
                 System.out.println("회원가입 오류: " + e.getMessage());
-                response.sendRedirect("/signup/signup.jsp?error=" +
+                response.sendRedirect("/webSignup/signup/signup.jsp?error=" +
                         java.net.URLEncoder.encode(message, "UTF-8"));
             } finally {
                 DBUtility.dbClose(con, pstmt);
             }
         } else {
             message = "입력 정보가 올바르지 않습니다.";
-            response.sendRedirect("/signup/signup.jsp?error=" +
+            response.sendRedirect("/webSignup/signup/signup.jsp?error=" +
                     java.net.URLEncoder.encode(message, "UTF-8"));
         }
     }
