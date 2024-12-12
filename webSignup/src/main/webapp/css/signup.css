@@ -150,3 +150,81 @@ body::before {
     display: flex;
     align-items: center;
 }
+
+.int-area label[for="birth"] {
+    position: absolute;
+    left: 10px;
+    top: -18px; /* 생년월일 레이블만 위로 이동 */
+    font-size: 12px;
+    color: #999;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.birth-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.birth-container input[type="text"],
+.birth-container select {
+    width: 30%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    background: transparent;
+    color: #333;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.birth-container input[type="text"]:focus,
+.birth-container select:focus {
+    border-color: #166cea;
+}
+
+.birth-container select {
+    cursor: pointer;
+}
+
+.int-area label[for="phone1"] {
+    position: absolute;
+    left: 10px;
+    top: -10px; /* 생년월일 레이블만 위로 이동 */
+    font-size: 12px;
+    color: #999;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.phone-container {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* 입력 칸과 '-' 사이 간격 */
+}
+
+.phone-container input {
+    width: 80px; /* 입력칸 고정 크기 */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.phone-container span {
+    font-size: 16px;
+    color: #333;
+    line-height: normal; /* '-' 구분자와 입력칸 정렬 */
+}
+
+.phone-container input:focus {
+    border-color: #166cea;
+}
+
