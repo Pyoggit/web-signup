@@ -19,20 +19,19 @@ public class DeleteServlet extends HttpServlet {
         String id = request.getParameter("id");
 
         SignupDAO dao = new SignupDAO();
-        SignupVO user = new SignupVO(id, null, null, null, 0);
+        SignupVO user = new SignupVO(id, null, null, null, null, null, null, null, null, null, null);
         boolean deleted = dao.deleteDB(user);
 
         if (deleted) {
-            // 세션 무효화
             HttpSession session = request.getSession(false);
             if (session != null) {
                 session.invalidate();
             }
-            // 로그인 페이지로 리다이렉트
-            response.sendRedirect(request.getContextPath() + "/signup/login.jsp?message=" + java.net.URLEncoder.encode("회원 탈퇴가 완료되었습니다.", "UTF-8"));
+            response.sendRedirect("/webSignup/signup/login.jsp?message=" + 
+                java.net.URLEncoder.encode("회원 탈퇴가 완료되었습니다.", "UTF-8"));
         } else {
-            // 마이페이지로 에러 메시지 전달
-            response.sendRedirect(request.getContextPath() + "/signup/success.jsp?error=" + java.net.URLEncoder.encode("회원 탈퇴에 실패했습니다.", "UTF-8"));
+            response.sendRedirect("/webSignup/signup/success.jsp?error=" + 
+                java.net.URLEncoder.encode("회원 탈퇴에 실패했습니다.", "UTF-8"));
         }
     }
 }
