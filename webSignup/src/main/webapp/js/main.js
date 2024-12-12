@@ -103,3 +103,34 @@ function carousel() {
 
 
 }
+
+// 로그인 페이지 팝업창 이동기능
+document.addEventListener("DOMContentLoaded", function () {
+    const startButton = document.querySelector(".header-icons a"); 
+
+    startButton.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        const popupWidth = 500;
+        const popupHeight = 600;
+
+        // 브라우저 창의 가로/세로 크기 계산
+        const screenWidth = window.screen.width;
+        const screenHeight = window.screen.height;
+
+        // 팝업 창의 위치 계산 (가운데 정렬)
+        const popupX = Math.round((screenWidth - popupWidth) / 2);
+        const popupY = Math.round((screenHeight - popupHeight) / 2);
+
+        const popup = window.open(
+            startButton.href,
+            "StartPopup",
+            `width=${popupWidth},height=${popupHeight},left=${popupX},top=${popupY},scrollbars=no,resizable=no`
+        );
+
+        if (!popup) {
+            alert("팝업 차단이 활성화되어 있습니다. 팝업을 허용해주세요.");
+        }
+    });
+});
+
