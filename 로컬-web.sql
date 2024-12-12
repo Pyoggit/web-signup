@@ -5,11 +5,33 @@ DROP TABLE SIGNUP;
 CREATE TABLE SIGNUP (
     ID VARCHAR2(12) ,                         -- 아이디 (4~12자의 영문 대소문자와 숫자)
     PWD VARCHAR2(12) NOT NULL,                -- 비밀번호 (4~12자의 영문 대소문자와 숫자)
-    EMAIL VARCHAR2(100) NOT NULL,             -- 이메일 주소
     NAME VARCHAR2(50) NOT NULL,               -- 이름
-    BIRTH NUMBER(10)                          -- 생년월일 (20001010)
+    BIRTH VARCHAR2(10),                       -- 생년월일 (20240101)
+    PHONE1 VARCHAR2(3) NOT NULL,              -- 전화번호 
+    PHONE2 VARCHAR2(4) NOT NULL,
+    PHONE3 VARCHAR2(4) NOT NULL,
+    EMAIL VARCHAR2(30) NOT NULL,              -- 이메일 주소
+    ZIPCODE VARCHAR2(7) NOT NULL,             -- 우편번호
+    ADDRESS1 VARCHAR2(120) NOT NULL,          -- 주소
+    ADDRESS2 VARCHAR2(50) NOT NULL            -- 상세주소
 );
 
 ALTER TABLE SIGNUP ADD CONSTRAINT SIGNUP_ID_PK PRIMARY KEY(ID);
 
 SELECT * FROM SIGNUP;
+
+-- 주소정보테이블
+CREATE TABLE ZIPCODE (
+    SEQ NUMBER(10),
+    ZIPCODE VARCHAR2(50),
+    SIDO VARCHAR2(50),
+    GUGUN VARCHAR2(50),
+    DONG VARCHAR2(50),
+    BUNJI VARCHAR2(100)
+);
+
+ALTER TABLE ZIPCODE ADD CONSTRAINT ZIPCODE_SEQ_PK PRIMARY KEY(SEQ);
+
+SELECT * FROM ZIPCODE;
+
+SELECT * FROM ZIPCODE WHERE DONG LIKE '권선%';
