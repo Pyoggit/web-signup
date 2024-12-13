@@ -8,49 +8,47 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/main.css" />
 <script src="${pageContext.request.contextPath}/js/main.js"></script>
-<script src="https://kit.fontawesome.com/01ba7af47f.js" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/01ba7af47f.js"
+	crossorigin="anonymous"></script>
 </head>
 <body>
-    <header>
-        <div class="header-logo">
-            <i class="fa-solid fa-users"></i> <a href="#">Main</a>
-        </div>
-        <ul class="header-menu">
-            <li class="dropdown"><a href="#" class="dropbtn">home1</a>
-                <div class="dropdown-content">
-                    <a href="#">menu1</a> <a href="#">menu2</a> <a href="#">menu3</a>
-                </div>
-            </li>
-            <li class="dropdown"><a href="#" class="dropbtn">home2</a>
-                <div class="dropdown-content">
-                    <a href="#">menu1</a> <a href="#">menu2</a>
-                </div>
-            </li>
-            <li class="dropdown"><a href="#" class="dropbtn">home3</a>
-                <div class="dropdown-content">
-                    <a href="#">menu1</a> <a href="#">menu2</a> <a href="#">menu3</a> <a href="#">menu4</a> <a href="#">menu5</a>
-                </div>
-            </li>
-            <li class="dropdown"><a href="#" class="dropbtn">home4</a>
-                <div class="dropdown-content">
-                    <a href="#">menu1</a> <a href="#">menu2</a> <a href="#">menu3</a> <a href="#">menu4</a> <a href="#">menu5</a>
-                </div>
-            </li>
-            <li class="dropdown"><a href="#" class="dropbtn">home5</a>
-                <div class="dropdown-content">
-                    <a href="#">menu1</a> <a href="#">menu2</a> <a href="#">menu3</a> <a href="#">menu4</a> <a href="#">menu5</a> <a href="#">menu6</a>
-                </div>
-            </li>
-        </ul>
-        <ul class="header-icons">
-			<li>
-				<a href="${pageContext.request.contextPath}/signup/login.jsp">시작하기</a>
+	<header>
+		<div class="header-logo">
+			<i class="fa-solid fa-users"></i> <a href="mainPage.jsp">Main</a>
+		</div>
+		<ul class="header-menu">
+			<li class="dropdown"><a href="#" class="dropbtn">페이지소개</a>
+				<div class="dropdown-content">
+					<a href="#">제작자</a> <a href="#">기여한사람들</a> <a href="#">참고문서</a>
+				</div></li>
+			<li class="dropdown"><a href="#" class="dropbtn">home2</a>
+				<div class="dropdown-content">
+					<a href="#">menu1</a> <a href="#">menu2</a>
+				</div></li>
+			<li class="dropdown"><a href="#" class="dropbtn">상품</a>
+				<div class="dropdown-content">
+					<a href="#">도서</a> <a href="#">의류</a> <a href="#">식품</a> <a
+						href="#">전자제품</a> <a href="#">주류</a>
+				</div></li>
+			<li class="dropdown"><a href="#" class="dropbtn">커뮤니티</a>
+				<div class="dropdown-content">
+					<a href="#">공지사항</a> <a href="#">자유게시판</a> <a href="#">상품후기</a>
+				</div></li>
+			<li class="dropdown"><a href="#" class="dropbtn">문의(Q&A)</a>
+				<div class="dropdown-content">
+					<a href="list.jsp">게시글목록</a> <a href="writeForm.jsp">게시글쓰기</a>
+				</div>
 			</li>
 		</ul>
-    </header>
-    <section onload="carousel();">
-        <div class="slideshow">
-            <div class="slideshow_slides">
+		<ul class="header-icons">
+			<li><a
+				href="${pageContext.request.contextPath}/signup/login.jsp">시작하기</a>
+			</li>
+		</ul>
+	</header>
+	<section onload="carousel();">
+		<div class="slideshow">
+			<div class="slideshow_slides">
 				<a href="#"><img
 					src="${pageContext.request.contextPath}/img/slide-1.jpg" /></a> <a
 					href="#"><img
@@ -60,15 +58,16 @@
 					href="#"><img
 					src="${pageContext.request.contextPath}/img/slide-4.jpg" /></a>
 			</div>
-            <div class="slideshow_nav">
-                <a href="#" class="prev"><i class="fa-solid fa-circle-chevron-left"></i></a>
-                <a href="#" class="next"><i class="fa-solid fa-circle-chevron-right"></i></a>
-            </div>
-            <div class="slideshow_indicator">
-                <a href="#"><i class="fa-regular fa-circle-dot"></i></a>
-                <a href="#"><i class="fa-regular fa-circle-dot"></i></a>
-                <a href="#"><i class="fa-regular fa-circle-dot"></i></a>
-                <a href="#"><i class="fa-regular fa-circle-dot"></i></a>
-            </div>
-        </div>
-    </section>
+			<div class="slideshow_nav">
+				<a href="#" class="prev"><i
+					class="fa-solid fa-circle-chevron-left"></i></a> <a href="#"
+					class="next"><i class="fa-solid fa-circle-chevron-right"></i></a>
+			</div>
+			<div class="slideshow_indicator">
+				<a href="#"><i class="fa-regular fa-circle-dot"></i></a> <a href="#"><i
+					class="fa-regular fa-circle-dot"></i></a> <a href="#"><i
+					class="fa-regular fa-circle-dot"></i></a> <a href="#"><i
+					class="fa-regular fa-circle-dot"></i></a>
+			</div>
+		</div>
+	</section>
