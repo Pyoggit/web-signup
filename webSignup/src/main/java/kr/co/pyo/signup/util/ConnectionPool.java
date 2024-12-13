@@ -1,229 +1,138 @@
 package kr.co.pyo.signup.util;
 
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
 public final class ConnectionPool {
-	// 1.
-	static {
-		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
-	private ArrayList<Connection> free;
-	private ArrayList<Connection> used; // 사용중인 커넥션을 저장하는 변수
-	private int initialCons = 10; // 최초로 초기 커넥션수
-	private int maxCons = 20; // 최대 커넥션수
-	private int numCons = 0; // 총 Connection 수
-	private String user = null;
-	private String pw = null;
-	private String url = null;;
+    static {
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
-	// 싱글톤(자기참조멤버변수, 생성자함수, 자기참조멤버변수)
-	private static ConnectionPool cp;
+    private ArrayList<Connection> free;
+    private ArrayList<Connection> used;
+    private int initialCons = 10;
+    private int maxCons = 20;
+    private int numCons = 0;
+    private String user;
+    private String pw;
+    private String url;
 
-	public static ConnectionPool getInstance() {
-		if (cp == null) {
-			synchronized (ConnectionPool.class) {
-				cp = new ConnectionPool();
-			}
+    private static ConnectionPool cp;
 
-		}
-		return cp;
-	}
+    public static synchronized ConnectionPool getInstance() {
+        if (cp == null) {
+            cp = new ConnectionPool();
+        }
+        return cp;
+    }
 
-	private ConnectionPool() {
-		free = new ArrayList<Connection>(initialCons);
-		used = new ArrayList<Connection>(initialCons);
+    private ConnectionPool() {
+        free = new ArrayList<>(initialCons);
+        used = new ArrayList<>(initialCons);
 
-		String filePath = "C:\\dev\\web-signup\\webSignup\\src\\main\\webapp\\resources\\db.properties";
-		Properties pt = new Properties();
-		try {
-			pt.load(new FileReader(filePath));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		user = pt.getProperty("user");
-		pw = pt.getProperty("pw");
-		url = pt.getProperty("url");
+        String filePath = "C:\\dev\\web-signup\\webSignup\\src\\main\\webapp\\resources\\db.properties";
+        try (FileInputStream input = new FileInputStream(filePath)) {
+            Properties pt = new Properties();
+            pt.load(input);
+            user = pt.getProperty("user");
+            pw = pt.getProperty("pw");
+            url = pt.getProperty("url");
 
-		while (numCons < initialCons) {
-			addConnection();
-		}
-	}
+            for (int i = 0; i < initialCons; i++) {
+                free.add(getNewConnection());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-	// Connection free ArrayList
-	private void addConnection() {
-		free.add(getNewConnection());
-	}
+    private synchronized Connection getNewConnection() {
+        try {
+            numCons++;
+            return DriverManager.getConnection(url, user, pw);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
-	// Connection 를 만들어서 리턴
-	private Connection getNewConnection() {
-		Connection con = null;
+    public synchronized Connection dbCon() {
+        if (free.isEmpty() && numCons < maxCons) {
+            free.add(getNewConnection());
+        }
 
-		try {
-			con = DriverManager.getConnection(url, user, pw);
-			numCons++;
-			System.out.println("current to Connection: " + numCons);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+        if (!free.isEmpty()) {
+            Connection con = free.remove(free.size() - 1);
+            used.add(con);
+            return con;
+        } else {
+            throw new RuntimeException("모든 커넥션이 사용 중입니다.");
+        }
+    }
 
-		return con;
+    public synchronized void releaseConnection(Connection con) {
+        if (used.remove(con)) {
+            free.add(con);
+        }
+    }
 
-	}
+    public void dbClose(Connection con, PreparedStatement pstmt, ResultSet rs) {
+        try {
+            if (rs != null) rs.close();
+            if (pstmt != null) pstmt.close();
+            if (con != null) releaseConnection(con);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-	public synchronized Connection dbCon() {
+    public void dbClose(Connection con, Statement stmt, ResultSet rs) {
+        try {
+            if (rs != null) rs.close();
+            if (stmt != null) stmt.close();
+            if (con != null) releaseConnection(con);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-		// 1. free ArrayList Connection 들어있는지 확인
-		Connection con = null;
-		if (free.isEmpty()) {
-			while (numCons < maxCons) {
-				addConnection();
+    public void dbClose(Connection con, Statement stmt) {
+        try {
+            if (stmt != null) stmt.close();
+            if (con != null) releaseConnection(con);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-			}
-		}
-		con = free.get(free.size() - 1);
-		free.remove(con);
-		used.add(con);
+    public synchronized void closeAll() {
+        for (Connection con : free) {
+            try {
+                con.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        free.clear();
 
-		return con;
-
-	}
-
-	public void dbClose(Connection con, ResultSet rs, Statement... stmts) {
-		if (con != null) {
-			releaseConnection(con);
-		}
-		for (Statement data : stmts) {
-			if (data != null) {
-				try {
-					data.close();
-				} catch (SQLException e) {
-					System.out.println(e.toString());
-				}
-			}
-		}
-
-		if (rs != null) {
-			try {
-				rs.close();
-			} catch (SQLException e) {
-				System.out.println(e.toString());
-			}
-		}
-	}
-
-	public void dbClose(Connection con, Statement... stmts) {
-		if (con != null) {
-			releaseConnection(con);
-		}
-		for (Statement data : stmts) {
-			if (data != null) {
-				try {
-					data.close();
-				} catch (SQLException e) {
-					System.out.println(e.toString());
-				}
-			}
-		}
-
-	}
-
-	public void dbClose(Connection con, PreparedStatement pstmt, ResultSet rs) {
-		if (con != null) {
-			releaseConnection(con);
-		}
-		if (pstmt != null) {
-			try {
-				pstmt.close();
-			} catch (SQLException e) {
-				System.out.println(e.toString());
-			}
-		}
-
-		if (rs != null) {
-			try {
-				rs.close();
-			} catch (SQLException e) {
-				System.out.println(e.toString());
-			}
-		}
-	}
-
-	public void dbClose(Connection con, Statement stmt, ResultSet rs) {
-		if (con != null) {
-			releaseConnection(con);
-		}
-		if (stmt != null) {
-			try {
-				stmt.close();
-			} catch (SQLException e) {
-				System.out.println(e.toString());
-			}
-		}
-
-		if (rs != null) {
-			try {
-				rs.close();
-			} catch (SQLException e) {
-				System.out.println(e.toString());
-			}
-		}
-
-	}
-
-	// ConnectionPool 만들어서 Connection free ArrayList에 반납하고 아니면 close
-	public synchronized void releaseConnection(Connection con) {
-		boolean flag = false;
-
-		if (used.contains(con) == true) {
-			used.remove(con);
-			numCons--;
-			free.add(con);
-			flag = true;
-		}
-
-		try {
-			if (flag == true) {
-				con.close();
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
-	//현재 커넥션풀에 있는커넥션을 모두 제거
-	public void closeAll() {
-		// used에 있는 커넥션을 모두 삭제해 버림.
-		for (int i = 0; i < used.size(); i++) {
-			Connection _con = (Connection) used.get(i);
-			used.remove(i--);
-			try {
-				_con.close();
-			} catch (SQLException sqle) {
-				sqle.printStackTrace();
-			}
-		}
-		// free에 있는 커넥션을 모두 삭제해 버림.
-		for (int i = 0; i < free.size(); i++) {
-			Connection _con = (Connection) free.get(i);
-			free.remove(i--);
-			try {
-				_con.close();
-			} catch (SQLException sqle) {
-				sqle.printStackTrace();
-			}
-		}
-
-	}
+        for (Connection con : used) {
+            try {
+                con.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        used.clear();
+        numCons = 0;
+    }
 }
