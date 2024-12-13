@@ -32,9 +32,9 @@ if (id != null && !id.isEmpty()) {
 		<b><%=id%></b>
 		<%
 		if (flag == true) {
-			out.println("는 이미 존재하는 ID입니다.<br></br>");
+			out.println("이미 존재하는 ID입니다.<br></br>");
 		} else {
-			out.println("는 사용 가능 합니다.<br></br>");
+			out.println("사용 가능 합니다.<br></br>");
 		}
 		%>
 		<hr>
