@@ -1,0 +1,115 @@
+@charset "UTF-8";
+
+/* 공통 스타일 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  background-color: #f9f9f9;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* 메인 컨테이너 */
+.write-container {
+  margin-top: 40px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+/* 제목 */
+.write-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* 테이블 스타일 */
+.write-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.write-table th,
+.write-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+}
+
+.write-table th {
+  background-color: #f4f4f4;
+  text-align: center;
+}
+
+.write-table td {
+  text-align: left;
+}
+
+/* 버튼 스타일 */
+.write-buttons {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.write-buttons input {
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #166cea;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.write-buttons input:hover {
+  background-color: #004a9e;
+}
+
+.write-buttons input[type="reset"] {
+  background-color: #ff6666;
+}
+
+.write-buttons input[type="reset"]:hover {
+  background-color: #cc0000;
+}
+
+.write-buttons input[type="button"] {
+  background-color: #555;
+}
+
+.write-buttons input[type="button"]:hover {
+  background-color: #333;
+}
+
+/* 글삭제 버튼 스타일 */
+.delete-btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #ff4d4d; /* 빨간색 배경 */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.delete-btn:hover {
+  background-color: #cc0000; /* 어두운 빨간색으로 변경 */
+}
