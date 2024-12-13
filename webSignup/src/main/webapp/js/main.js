@@ -159,8 +159,8 @@ document.addEventListener("DOMContentLoaded", function () {
     startButton.addEventListener("click", function (event) {
         event.preventDefault();
 
-        const popupWidth = 500;
-        const popupHeight = 600;
+        const popupWidth = 550;
+        const popupHeight = 800;
 
         // 브라우저 창의 가로/세로 크기 계산
         const screenWidth = window.screen.width;
