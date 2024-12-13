@@ -26,7 +26,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
   height: auto;
   background-color: #fff;
@@ -134,13 +134,15 @@ div.dropdown-content a:hover {
 }
 
 
+
+
 /* section 부분 */
 .slideshow {
   overflow: hidden;
   position: relative;
-  height: 400px;
+  height: 350px;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 .slideshow_slides {
@@ -200,179 +202,7 @@ div.slideshow_indicator a.active {
   color: rgb(213, 73, 0);
 }
 
-/* main 부분 */
-main {
-  max-width: 1200px;
-  margin: 2rem auto;
-  padding: 1rem;
-  display: flex;
-  gap: 2rem;
-}
 
-.menu-left {
-  flex: 1;
-  padding: 1rem;
-  background-color: #f1f1f1;
-  border-radius: 5px;
-}
-
-.list {
-  background-color: rgb(238, 238, 238);
-  margin: 0;
-  margin-left: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 15px;
-}
-.list a {
-  color: black;
-  text-decoration: none;
-}
-
-.list-title {
-  font-weight: 600;
-  margin: 10px 0;
-  line-height: 1.5;
-  border-top: 1px solid rgb(196, 196, 196);
-  border-bottom: 1px solid rgb(196, 196, 196);
-  font-size: 1rem;
-}
-.list a:hover {
-  color: #333;
-  text-decoration: underline;
-}
-
-.board-content {
-  flex: 3;
-  padding: 1.5rem;
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.board-top h2 {
-  color: black;
-  font-size: 1.8rem;
-}
-
-.board-menu {
-  display: flex;
-  justify-content: flex-end;
-}
-.board-alert {
-  font-size: 1rem;
-}
-
-.board-filter {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.left-filter {
-  padding: 5px 5px;
-}
-.left-filter a {
-  padding: 1px 5px;
-  color: #ccc;
-  background-color: #333;
-}
-.left-filter a:hover {
-  padding: 1px 5px;
-  color: #333;
-  background-color: #ccc;
-}
-
-.right-filter a {
-  padding: 1px 5px;
-  color: #ccc;
-  background-color: #333;
-}
-.right-filter a:hover {
-  color: #333;
-  background-color: #ccc;
-}
-
-.menu-table {
-  border-spacing: 5px;
-}
-
-.menu-table td {
-  padding: 8px;
-}
-
-.menu-table a {
-  color: black;
-  text-decoration: none;
-}
-
-.menu-table a:hover {
-  color: #333;
-  text-decoration: underline;
-}
-.article-table {
-  width: 100%;
-  border-top: 3px solid #ccc;
-  border-collapse: collapse;
-}
-
-.article-table th,
-.article-table td {
-  padding: 8px;
-  font-size: 1rem;
-  border-bottom: 1px solid rgb(238, 238, 238);
-}
-
-.page-list {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-.content a {
-  color: black;
-  text-decoration: none;
-}
-
-.content a:hover {
-  color: #333;
-  text-decoration: underline;
-}
-.page,
-.page-selected {
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
-  text-align: center;
-  margin: 0 5px;
-  font-size: 1rem;
-}
-
-.page-list a {
-  color: black;
-  text-decoration: none;
-  border-radius: 3px;
-  padding: 5px;
-}
-
-.page-list a:hover {
-  color: white;
-  background-color: #333;
-  text-decoration: none;
-}
-
-.write {
-  text-align: right;
-}
-
-.write a {
-  padding: 1px 5px;
-  color: #ccc;
-  background-color: #333;
-}
-.write a:hover {
-  color: #333;
-  background-color: #ccc;
-}
 
 /* Footer 부분 */
 
