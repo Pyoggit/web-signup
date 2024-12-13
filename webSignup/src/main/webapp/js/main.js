@@ -2,6 +2,54 @@ window.onload = function() {
     carousel();
 };
 
+
+// 게시글 작성 폼 검증
+function writeSave() {
+    if (document.writeForm.writer.value == "") {
+        alert("작성자를 입력하십시요.");
+        document.writeForm.writer.focus();
+        return false;
+    }
+    if (document.writeForm.subject.value == "") {
+        alert("제목을 입력하십시요.");
+        document.writeForm.subject.focus();
+        return false;
+    }
+    if (document.writeForm.content.value == "") {
+        alert("내용을 입력하십시요.");
+        document.writeForm.content.focus();
+        return false;
+    }
+
+    if (document.writeForm.pass.value == "") {
+        alert("비밀번호를 입력하십시요.");
+        document.writeForm.pass.focus();
+        return false;
+    }
+}
+
+// 게시글 삭제 폼 검증
+function deleteSave() {
+    const password = document.delForm.pass.value;
+
+    // 패스워드 패턴: 최소 8자, 영문자, 숫자, 특수문자 포함
+    const pattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+    if (!password) {
+        alert("비밀번호를 입력해 주세요.");
+        document.delForm.pass.focus();
+        return false;
+    }
+
+    if (!pattern.test(password)) {
+        alert("비밀번호는 최소 8자 이상, 영문자, 숫자, 특수문자를 포함해야 합니다.");
+        document.delForm.pass.focus();
+        return false;
+    }
+
+    return true; // 패스워드가 유효하면 폼 제출
+}
+
 function carousel() { 
     let slideshow = document.querySelector(".slideshow");
     let slideshow_slides = document.querySelector(".slideshow_slides");
