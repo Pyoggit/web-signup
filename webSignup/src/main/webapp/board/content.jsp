@@ -4,7 +4,7 @@
 <%@ page import="kr.co.pyo.board.model.BoardDAO"%>
 <%@ page import="kr.co.pyo.board.model.BoardVO"%>
 <%@ include file="mainHeader.jsp"%>
-<!-- 헤더 include -->
+
 
 <%
 request.setCharacterEncoding("UTF-8");
@@ -68,4 +68,3 @@ if (bvo == null) {
 </main>
 
 <%@ include file="mainFooter.jsp"%>
-<!-- 푸터 include -->
