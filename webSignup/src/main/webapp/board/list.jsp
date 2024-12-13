@@ -45,7 +45,7 @@
     %>
     <table class="list-table">
         <tr>
-            <td colspan="5" align="left" class="list-title">글목록 (전체 글: <%= count %>)</td>
+            <td colspan="5" align="left" class="list-title">문의하기 (전체 글: <%= count %>)</td>
             <td align="right" class="list-write-btn">
                 <button onclick="location.href='writeForm.jsp'" class="write-btn">글쓰기</button>
             </td>
