@@ -98,3 +98,20 @@ a {
   background-color: #cc0000; /* 어두운 빨간색으로 변경 */
 }
 
+.reply-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #4caf50; /* 초록색 */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.reply-btn:hover {
+    background-color: #388e3c;
+}
+
+
