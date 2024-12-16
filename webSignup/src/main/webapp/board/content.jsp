@@ -5,7 +5,6 @@
 <%@ page import="kr.co.pyo.board.model.BoardVO"%>
 <%@ include file="mainHeader.jsp"%>
 
-
 <%
 request.setCharacterEncoding("UTF-8");
 int num = 0;
@@ -28,8 +27,7 @@ if (bvo == null) {
 }
 %>
 
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/boardContent.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/boardContent.css">
 
 <main class="content-container">
 	<div class="content-title">글내용 보기</div>
@@ -61,6 +59,8 @@ if (bvo == null) {
 				onclick="document.location.href='updateForm.jsp?num=<%=bvo.getNum()%>&pageNum=<%=pageNum%>'">
 			<input type="button" value="글삭제" class="delete-btn"
 				onclick="document.location.href='deleteForm.jsp?num=<%=bvo.getNum()%>&pageNum=<%=pageNum%>'">
+			<input type="button" value="답글쓰기" class="reply-btn"
+				onclick="document.location.href='writeForm.jsp?num=<%=bvo.getNum()%>&ref=<%=bvo.getRef()%>&step=<%=bvo.getStep()%>&depth=<%=bvo.getDepth()%>&pageNum=<%=pageNum%>'">
 			<input type="button" value="글목록"
 				onclick="document.location.href='list.jsp?pageNum=<%=pageNum%>'">
 		</div>
