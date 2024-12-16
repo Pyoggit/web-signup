@@ -102,41 +102,42 @@
     %>
     </table>
 </main>
- <br></br>
-  <div align ="center">
-  <%
-   	if (count > 0) {
-	   	int pageBlock = 5;
-	   	int imsi = count % pageSize == 0 ? 0 : 1;
-	   	int pageCount = count / pageSize + imsi;
-	   	int startPage = (int)((currentPage-1)/pageBlock)*pageBlock + 1;
-	   	int endPage = startPage + pageBlock - 1;
-	   	if (endPage > pageCount) endPage = pageCount; 
-	   	if (startPage > pageBlock) { 
-	 %>
-	   <a href="list.jsp?pageNum=<%=startPage-pageBlock%>">[이전]</a>
-	 <%
-	   }
-	   for (int i = startPage ; i <= endPage ; i++) { 
-		   if(currentPage == 1){
-	 %>
-	   <a href="list.jsp?pageNum=<%= i %>">[[<%= i %>]]</a>
-	 <%
-		   }else{		
-		%>
-	   <a href="list.jsp?pageNum=<%= i %>">[<%= i %>]</a>
-		<%
-		   }
-		%>	 
-		<%  
-	   }
-	   if (endPage < pageCount) { 
-	 %>
-	   <a href="list.jsp?pageNum=<%=startPage+pageBlock%>">[다음]</a>
-	 <%
-	   	}
-	  }  
-   %>
-  </div>
+ <div class="paging">
+    <%
+        if (count > 0) {
+            int pageBlock = 5;
+            int imsi = count % pageSize == 0 ? 0 : 1;
+            int pageCount = count / pageSize + imsi;
+            int startPage = (int) ((currentPage - 1) / pageBlock) * pageBlock + 1;
+            int endPage = startPage + pageBlock - 1;
+            if (endPage > pageCount) endPage = pageCount;
+
+            if (startPage > pageBlock) {
+    %>
+    <a href="list.jsp?pageNum=<%= startPage - pageBlock %>" class="disabled">이전</a>
+    <%
+            }
+
+            for (int i = startPage; i <= endPage; i++) {
+                if (currentPage == i) {
+    %>
+    <a href="list.jsp?pageNum=<%= i %>" class="current-page"><%= i %></a>
+    <%
+                } else {
+    %>
+    <a href="list.jsp?pageNum=<%= i %>"><%= i %></a>
+    <%
+                }
+            }
+
+            if (endPage < pageCount) {
+    %>
+    <a href="list.jsp?pageNum=<%= startPage + pageBlock %>">다음</a>
+    <%
+            }
+        }
+    %>
+</div>
+
 
 <%@ include file="mainFooter.jsp" %> 
