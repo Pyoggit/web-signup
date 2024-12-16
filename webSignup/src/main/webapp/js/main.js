@@ -36,6 +36,14 @@ function deleteSave() {
 	}
 }
 
+function replySave() {
+    if (document.replyForm.content.value == "") {
+        alert("답변 내용을 입력하십시요.");
+        document.replyForm.content.focus();
+        return false;
+    }
+}
+
 // 게시글 삭제 폼 검증
 /*function deleteSave() {
 		const password = document.delForm.pass.value;
