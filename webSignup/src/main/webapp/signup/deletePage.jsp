@@ -15,7 +15,7 @@
 <head>
     <meta charset="UTF-8">
     <title>회원 탈퇴 확인</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/delete.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/signup/css/delete.css">
 </head>
 <body>
     <div class="container">

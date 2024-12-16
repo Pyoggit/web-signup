@@ -24,9 +24,8 @@ if (check.equals("n") == true) {
 <title>우편번호검색</title>
 <link href="style.css" rel="stylesheet" type="text/css">
 <script language="JavaScript" src="script.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/zipCheck.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/signup/css/zipCheck.css">
 <script src="/webSignup/js/check.js"></script>
-<!-- ② -->
 </head>
 <body bgcolor="#FFFFCC">
 	<main>
@@ -42,7 +41,6 @@ if (check.equals("n") == true) {
 			</table>
 		</form>
 		<table>
-			<!-- ③ -->
 			<%
 			if (check.equals("n")) {
 				if (zipList.isEmpty()) {
@@ -76,7 +74,6 @@ if (check.equals("n") == true) {
 					} //check.equals("n") end
 					%></td>
 			</tr>
-			<!-- ③ -->
 			<tr>
 				<td align="center"><a href="javascript:this.close();">닫기</a></td>
 			</tr>

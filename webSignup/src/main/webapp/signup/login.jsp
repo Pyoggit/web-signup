@@ -6,9 +6,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>로그인 페이지</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css?ver=1.0" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/signup/css/login.css?ver=1.0" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/check.js"></script>
+    <script src="${pageContext.request.contextPath}/signup/js/check.js"></script>
 </head>
 
 <body>

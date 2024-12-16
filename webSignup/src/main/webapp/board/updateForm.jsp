@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="kr.co.pyo.board.model.BoardDAO"%>
 <%@ page import="kr.co.pyo.board.model.BoardVO"%>
-<%@ include file="mainHeader.jsp" %> <!-- 메인 헤더 포함 -->
+<%@ include file="mainHeader.jsp" %>
 
 <%
     int num = Integer.parseInt(request.getParameter("num"));
@@ -15,7 +15,7 @@
         BoardVO article = bdao.selectBoardOneDB(vo);
 %>
 
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/board.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/board/css/board.css">
 
 <main class="write-container">
     <div class="write-title">글수정</div>
@@ -72,4 +72,4 @@
         e.printStackTrace();
     }
 %>
-<%@ include file="mainFooter.jsp" %> <!-- 메인 푸터 포함 -->
+<%@ include file="mainFooter.jsp" %>

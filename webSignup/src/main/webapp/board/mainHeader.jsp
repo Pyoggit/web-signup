@@ -6,15 +6,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>메인페이지</title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/main.css" />
-<script src="${pageContext.request.contextPath}/js/main.js"></script>
+	href="${pageContext.request.contextPath}/board/css/main.css" />
+<script src="${pageContext.request.contextPath}/board/js/main.js"></script>
 <script src="https://kit.fontawesome.com/01ba7af47f.js"
 	crossorigin="anonymous"></script>
 </head>
 <body>
 	<header>
 		<div class="header-logo">
-			<i class="fa-solid fa-users"></i> <a href="mainPage.jsp">Main</a>
+			<i class="fa-solid fa-users"></i> <a href="${pageContext.request.contextPath}/mainHome/mainPage.jsp">Main</a>
 		</div>
 		<ul class="header-menu">
 			<li class="dropdown"><a href="#" class="dropbtn">페이지소개</a>
@@ -50,13 +50,13 @@
 		<div class="slideshow">
 			<div class="slideshow_slides">
 				<a href="#"><img
-					src="${pageContext.request.contextPath}/img/slide-1.jpg" /></a> <a
+					src="${pageContext.request.contextPath}/board/img/slide-1.jpg" /></a> <a
 					href="#"><img
-					src="${pageContext.request.contextPath}/img/slide-2.jpg" /></a> <a
+					src="${pageContext.request.contextPath}/board/img/slide-2.jpg" /></a> <a
 					href="#"><img
-					src="${pageContext.request.contextPath}/img/slide-3.jpg" /></a> <a
+					src="${pageContext.request.contextPath}/board/img/slide-3.jpg" /></a> <a
 					href="#"><img
-					src="${pageContext.request.contextPath}/img/slide-4.jpg" /></a>
+					src="${pageContext.request.contextPath}/board/img/slide-4.jpg" /></a>
 			</div>
 			<div class="slideshow_nav">
 				<a href="#" class="prev"><i

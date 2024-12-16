@@ -8,8 +8,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>메인페이지</title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/main.css" />
-<script src="${pageContext.request.contextPath}/js/main.js"></script>
+	href="${pageContext.request.contextPath}/mainHome/css/main.css" />
+<script src="${pageContext.request.contextPath}/mainHome/js/main.js"></script>
 <script src="https://kit.fontawesome.com/01ba7af47f.js" crossorigin="anonymous"></script>
 </head>
 
@@ -39,7 +39,7 @@
 				</div></li>
 			<li class="dropdown"><a href="#" class="dropbtn">문의(Q&A)</a>
 				<div class="dropdown-content">
-					<a href="list.jsp">게시글목록</a> <a href="writeForm.jsp">게시글쓰기</a>
+					<a href="${pageContext.request.contextPath}/board/list.jsp">게시글목록</a> <a href="${pageContext.request.contextPath}/board/writeForm.jsp">게시글쓰기</a>
 				</div>
 			</li>
 		</ul>
@@ -57,13 +57,13 @@
 		<div class="slideshow">
 			<div class="slideshow_slides">
 				<a href="#"><img
-					src="${pageContext.request.contextPath}/img/slide-1.jpg" /></a> <a
+					src="${pageContext.request.contextPath}/mainHome/img/slide-1.jpg" /></a> <a
 					href="#"><img
-					src="${pageContext.request.contextPath}/img/slide-2.jpg" /></a> <a
+					src="${pageContext.request.contextPath}/mainHome/img/slide-2.jpg" /></a> <a
 					href="#"><img
-					src="${pageContext.request.contextPath}/img/slide-3.jpg" /></a> <a
+					src="${pageContext.request.contextPath}/mainHome/img/slide-3.jpg" /></a> <a
 					href="#"><img
-					src="${pageContext.request.contextPath}/img/slide-4.jpg" /></a>
+					src="${pageContext.request.contextPath}/mainHome/img/slide-4.jpg" /></a>
 			</div>
 			<div class="slideshow_nav">
 				<a href="#" class="prev"><i

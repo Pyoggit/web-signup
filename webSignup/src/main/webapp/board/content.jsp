@@ -27,7 +27,7 @@ if (bvo == null) {
 }
 %>
 
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/boardContent.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/board/css/boardContent.css">
 
 <main class="content-container">
 	<div class="content-title">글내용 보기</div>

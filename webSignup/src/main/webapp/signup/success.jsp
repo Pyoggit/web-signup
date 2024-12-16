@@ -17,7 +17,7 @@
 <head>
     <meta charset="UTF-8">
     <title>마이페이지</title>
-    <link rel="stylesheet" href="../css/success.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/signup/css/success.css">
 </head>
 <body>
     <div class="container">

@@ -12,7 +12,7 @@
         }
 %>
 
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/board.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/board/css/board.css">
 
 <main class="write-container">
     <div class="write-title">글쓰기</div>

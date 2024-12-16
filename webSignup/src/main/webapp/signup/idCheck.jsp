@@ -22,8 +22,8 @@ if (id != null && !id.isEmpty()) {
 <html>
 <head>
 <title>ID중복체크</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/idCheck.css">
-<script src="/webSignup/js/check.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/signup/css/idCheck.css">
+<script src="${pageContext.request.contextPath}/signup/js/check.js"></script>
 
 </head>
 <body bgcolor="#FFFFCC">

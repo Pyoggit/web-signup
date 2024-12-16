@@ -28,7 +28,7 @@
     number = count - (currentPage - 1) * pageSize;
 %>
 
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/list.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/board/css/list.css">
 
 <main class="list-container">
     <%

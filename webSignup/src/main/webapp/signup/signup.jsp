@@ -7,8 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>회원가입</title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/signup.css">
-<script src="/webSignup/js/check.js"></script>
+	href="${pageContext.request.contextPath}/signup/css/signup.css">
+<script src="${pageContext.request.contextPath}/signup/js/check.js"></script>
 </head>
 <body>
 	<div class="signup-form">
