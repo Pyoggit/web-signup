@@ -112,3 +112,42 @@ a {
 .empty-write-btn .write-btn:hover {
   background-color: #004a9e;
 }
+
+/* 페이징 스타일 */
+.paging {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  font-size: 1rem;
+}
+
+.paging a {
+  display: inline-block;
+  margin: 0 5px;
+  padding: 8px 12px;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.paging a:hover {
+  background-color: #166cea;
+  color: #fff;
+  border-color: #166cea;
+}
+
+.paging a.current-page {
+  font-weight: bold;
+  color: #fff;
+  background-color: #166cea;
+  border-color: #166cea;
+  pointer-events: none; /* 현재 페이지는 클릭 불가능 */
+}
+
+.paging a.disabled {
+  color: #ccc;
+  cursor: not-allowed;
+  pointer-events: none;
+}
