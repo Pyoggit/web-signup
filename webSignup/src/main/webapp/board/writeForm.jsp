@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ include file="mainHeader.jsp" %> <!-- 메인 헤더 포함 -->
+<%@ include file="mainHeader.jsp" %>
 
 <%
     int num = 0, ref = 1, step = 0, depth = 0;
