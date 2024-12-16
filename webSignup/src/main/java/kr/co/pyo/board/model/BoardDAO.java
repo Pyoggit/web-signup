@@ -8,7 +8,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import kr.co.pyo.signup.util.ConnectionPool;
-import kr.co.pyo.signup.util.DBUtility;
 
 public class BoardDAO {
 	// 싱글톤--------------------------------------------------------------------------------------
