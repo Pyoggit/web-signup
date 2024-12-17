@@ -149,7 +149,7 @@ function carousel() {
 
 document.addEventListener("DOMContentLoaded", function () {
     // 로그인 팝업창 열기
-    const loginButton = document.querySelector(".login-btn");
+    const loginButton = document.querySelector(".login-btn, .start-btn");
     if (loginButton) {
         loginButton.addEventListener("click", function (event) {
             event.preventDefault();
@@ -211,6 +211,3 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
-
-
-

@@ -71,7 +71,7 @@
         <% if (user != null) { %>
             <li><strong><%= user.getName() %></strong>님, 환영합니다!</li>
         <% } else { %>
-            <li><a href="${pageContext.request.contextPath}/signup/login.jsp">시작하기</a></li>
+            <li><a href="${pageContext.request.contextPath}/signup/signup.jsp" class="start-btn">시작하기</a></li>
         <% } %>
     </ul>
 </header>
@@ -166,11 +166,8 @@
 		        </div>
 		    <% } %>
 		</section>
-
-
-
-
 </main>
+
 
 <!-- Footer -->
 <footer>
