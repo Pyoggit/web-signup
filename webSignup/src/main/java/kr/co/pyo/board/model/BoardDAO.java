@@ -49,16 +49,24 @@ public class BoardDAO {
 	public ArrayList<BoardVO> selectRecentBoards(int limit) {
 	    ArrayList<BoardVO> boardList = new ArrayList<>();
 	    String sql = "SELECT * FROM BOARD ORDER BY REGDATE DESC FETCH FIRST ? ROWS ONLY";
-	    try (Connection con = ConnectionPool.getInstance().dbCon();
-	         PreparedStatement pstmt = con.prepareStatement(sql)) {
+	    Connection con = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+
+	    try {
+	        con = ConnectionPool.getInstance().dbCon();
+	        pstmt = con.prepareStatement(sql);
 	        pstmt.setInt(1, limit);
-	        try (ResultSet rs = pstmt.executeQuery()) {
-	            while (rs.next()) {
-	                boardList.add(mapResultSetToBoardVO(rs));
-	            }
+	        rs = pstmt.executeQuery();
+
+	        while (rs.next()) {
+	        	boardList.add(mapResultSetToBoardVO(rs));
 	        }
 	    } catch (SQLException e) {
 	        e.printStackTrace();
+	    } finally {
+	        // 자원 반환
+	        ConnectionPool.getInstance().dbClose(con, pstmt, rs);
 	    }
 	    return boardList;
 	}

@@ -31,7 +31,6 @@ public class NoticeDAO {
 		    + "(SELECT ROWNUM AS RNUM, NUM, WRITER, EMAIL, SUBJECT, PASS, REGDATE, READCOUNT, REF, STEP, DEPTH, CONTENT, IP "
 		    + "FROM (SELECT * FROM NOTICE ORDER BY REF DESC, STEP ASC)) "
 		    + "WHERE RNUM >= ? AND RNUM <= ?";
-
 		private final String SELECT_PASS_SQL = "SELECT COUNT(*) AS COUNT FROM NOTICE WHERE NUM = ? AND PASS = ?";
 		private final String SELECT_ONE_SQL = "SELECT * FROM NOTICE WHERE NUM = ?";
 		private final String SELECT_COUNT_SQL = "SELECT COUNT(*) AS COUNT FROM NOTICE";
@@ -46,18 +45,26 @@ public class NoticeDAO {
 		
 		// 공지사항 최근 N개 가져오기
 	    public ArrayList<NoticeVO> selectNoticeList(int limit) {
-	        ArrayList<NoticeVO> noticeList = new ArrayList<>();
+	    	ArrayList<NoticeVO> noticeList = new ArrayList<>();
+	    	Connection con = null;
+	        PreparedStatement pstmt = null;
+	        ResultSet rs = null;
+	    	
 	        String sql = "SELECT * FROM NOTICE ORDER BY REGDATE DESC FETCH FIRST ? ROWS ONLY";
-	        try (Connection con = ConnectionPool.getInstance().dbCon();
-	             PreparedStatement pstmt = con.prepareStatement(sql)) {
+	        try {
+	            con = ConnectionPool.getInstance().dbCon();
+	            pstmt = con.prepareStatement(sql);
 	            pstmt.setInt(1, limit);
-	            try (ResultSet rs = pstmt.executeQuery()) {
-	                while (rs.next()) {
-	                    noticeList.add(mapResultSetToNoticeVO(rs));
-	                }
+	            rs = pstmt.executeQuery();
+
+	            while (rs.next()) {
+	                noticeList.add(mapResultSetToNoticeVO(rs));
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
+	        } finally {
+	            // 자원 반환
+	            ConnectionPool.getInstance().dbClose(con, pstmt, rs);
 	        }
 	        return noticeList;
 	    }
