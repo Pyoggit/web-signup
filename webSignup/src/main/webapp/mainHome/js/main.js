@@ -44,27 +44,6 @@ function replySave() {
     }
 }
 
-// 게시글 삭제 폼 검증
-/*function deleteSave() {
-		const password = document.delForm.pass.value;
-
-		// 패스워드 패턴: 최소 8자, 영문자, 숫자, 특수문자 포함
-		const pattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-
-		if (!password) {
-				alert("비밀번호를 입력해 주세요.");
-				document.delForm.pass.focus();
-				return false;
-		}
-
-		if (!pattern.test(password)) {
-				alert("비밀번호는 최소 8자 이상, 영문자, 숫자, 특수문자를 포함해야 합니다.");
-				document.delForm.pass.focus();
-				return false;
-		}
-
-		return true; // 패스워드가 유효하면 폼 제출
-}*/
 
 function carousel() {
 	let slideshow = document.querySelector(".slideshow");
@@ -168,33 +147,70 @@ function carousel() {
 
 }
 
-// 로그인 페이지 팝업창 이동기능
-document.addEventListener("DOMContentLoaded", function() {
-	const startButton = document.querySelector(".header-icons a");
+document.addEventListener("DOMContentLoaded", function () {
+    // 로그인 팝업창 열기
+    const loginButton = document.querySelector(".login-btn");
+    if (loginButton) {
+        loginButton.addEventListener("click", function (event) {
+            event.preventDefault();
 
-	startButton.addEventListener("click", function(event) {
-		event.preventDefault();
+            const popupWidth = 550;
+            const popupHeight = 800;
 
-		const popupWidth = 550;
-		const popupHeight = 800;
+            const screenWidth = window.screen.width;
+            const screenHeight = window.screen.height;
 
-		// 브라우저 창의 가로/세로 크기 계산
-		const screenWidth = window.screen.width;
-		const screenHeight = window.screen.height;
+            const popupX = Math.round((screenWidth - popupWidth) / 2);
+            const popupY = Math.round((screenHeight - popupHeight) / 2);
 
-		// 팝업 창의 위치 계산 (가운데 정렬)
-		const popupX = Math.round((screenWidth - popupWidth) / 2);
-		const popupY = Math.round((screenHeight - popupHeight) / 2);
+            const popup = window.open(
+                loginButton.href,
+                "LoginPopup",
+                `width=${popupWidth},height=${popupHeight},left=${popupX},top=${popupY},scrollbars=no,resizable=no`
+            );
 
-		const popup = window.open(
-			startButton.href,
-			"StartPopup",
-			`width=${popupWidth},height=${popupHeight},left=${popupX},top=${popupY},scrollbars=no,resizable=no`
-		);
+            if (!popup) {
+                alert("팝업 차단이 활성화되어 있습니다. 팝업을 허용해주세요.");
+            }
+        });
+    }
 
-		if (!popup) {
-			alert("팝업 차단이 활성화되어 있습니다. 팝업을 허용해주세요.");
-		}
-	});
+    // 마이페이지 팝업창 열기
+    const mypageButton = document.querySelector(".mypage-btn");
+    if (mypageButton) {
+        mypageButton.addEventListener("click", function (event) {
+            event.preventDefault();
+
+            const popupWidth = 800;
+            const popupHeight = 600;
+
+            const screenWidth = window.screen.width;
+            const screenHeight = window.screen.height;
+
+            const popupX = Math.round((screenWidth - popupWidth) / 2);
+            const popupY = Math.round((screenHeight - popupHeight) / 2);
+
+            const popup = window.open(
+                mypageButton.href,
+                "MypagePopup",
+                `width=${popupWidth},height=${popupHeight},left=${popupX},top=${popupY},scrollbars=yes,resizable=no`
+            );
+
+            if (!popup) {
+                alert("팝업 차단이 활성화되어 있습니다. 팝업을 허용해주세요.");
+            }
+        });
+    }
+
+    // 로그아웃 이동
+    const logoutButton = document.querySelector(".logout-btn");
+    if (logoutButton) {
+        logoutButton.addEventListener("click", function (event) {
+            event.preventDefault();
+            window.location.href = logoutButton.href;
+        });
+    }
 });
+
+
 
