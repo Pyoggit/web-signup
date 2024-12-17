@@ -1,6 +1,7 @@
 package kr.co.pyo.signup.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -49,10 +50,18 @@ public class LoginCheckServlet extends HttpServlet {
                 if (rs.next()) {
                     // 로그인 성공 시 세션 생성
                     HttpSession session = request.getSession();
-                    session.setAttribute("id", id);
+                    session.setAttribute("userId", id);
+                    session.setAttribute("userName", rs.getString("NAME"));
+                    session.setAttribute("userEmail", rs.getString("EMAIL"));
+                    session.setAttribute("userPhone", rs.getString("PHONE1") + "-" + rs.getString("PHONE2") + "-" + rs.getString("PHONE3"));
 
-                    // 로그인 성공 후 welcome 페이지로 리다이렉트
-                    response.sendRedirect(request.getContextPath() + "/welcomeServlet.do");
+                    // 부모창 이동 및 팝업창 닫기
+                    response.setContentType("text/html; charset=UTF-8");
+                    PrintWriter out = response.getWriter();
+                    out.println("<script>");
+                    out.println("window.opener.location.href = '" + request.getContextPath() + "/mainHome/mainPage.jsp';");
+                    out.println("window.close();");
+                    out.println("</script>");
                 } else {
                     // 로그인 실패 시 에러 메시지 설정 및 로그인 페이지로 이동
                     message = "아이디 또는 비밀번호가 잘못되었습니다.";
