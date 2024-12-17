@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.*, kr.co.pyo.signup.model.SignupDAO, kr.co.pyo.signup.model.SignupVO" %>
 <%
-    String id = (String) session.getAttribute("id");
+    String id = (String) session.getAttribute("userId");
     if (id == null) {
         response.sendRedirect("login.jsp");
         return;

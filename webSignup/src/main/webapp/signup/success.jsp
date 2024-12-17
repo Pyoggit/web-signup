@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.*, kr.co.pyo.signup.model.SignupDAO, kr.co.pyo.signup.model.SignupVO" %>
 <%
-    String id = (String) session.getAttribute("id");
+		String id = (String) session.getAttribute("userId");
     if (id == null) {
         response.sendRedirect("login.jsp");
         return;
@@ -38,9 +38,6 @@
         </form>
         <form action="/webSignup/signup/deletePage.jsp" method="get" style="margin-top: 20px;">
             <button type="submit" class="delete">회원 탈퇴</button>
-        </form>
-        <form action="/webSignup/logoutServlet.do" method="post" style="margin-top: 20px;">
-            <button type="submit" class="logout">로그아웃</button>
         </form>
     </div>
 </body>

@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.co.pyo.signup.util.DBUtility;
 
@@ -80,8 +81,9 @@ public class RegisterServlet extends HttpServlet {
                 int result = pstmt.executeUpdate();
                 if (result > 0) {
                     message = "회원가입이 성공적으로 완료되었습니다.";
-                    // 회원 이름을 welcome.jsp에 전달
-                    request.setAttribute("username", name);
+                    // 세션에 userId 저장
+                    HttpSession session = request.getSession();
+                    session.setAttribute("userId", id);
                     response.sendRedirect("/webSignup/signup/welcome.jsp");
                 } else {
                     message = "회원가입에 실패했습니다.";
