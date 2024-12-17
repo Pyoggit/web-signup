@@ -7,7 +7,7 @@
 <title>메인페이지</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/board/css/main.css" />
-<script src="${pageContext.request.contextPath}/board/js/main.js"></script>
+<script src="${pageContext.request.contextPath}/board/js/board.js"></script>
 <script src="https://kit.fontawesome.com/01ba7af47f.js"
 	crossorigin="anonymous"></script>
 </head>
@@ -32,7 +32,7 @@
 				</div></li>
 			<li class="dropdown"><a href="#" class="dropbtn">커뮤니티</a>
 				<div class="dropdown-content">
-					<a href="#">공지사항</a> <a href="#">자유게시판</a> <a href="#">상품후기</a>
+					<a href="${pageContext.request.contextPath}/notice/list.jsp">공지사항</a> <a href="#">자유게시판</a> <a href="#">상품후기</a>
 				</div></li>
 			<li class="dropdown"><a href="#" class="dropbtn">문의(Q&A)</a>
 				<div class="dropdown-content">
@@ -46,28 +46,3 @@
 			</li>
 		</ul>
 	</header>
-	<section onload="carousel();">
-		<div class="slideshow">
-			<div class="slideshow_slides">
-				<a href="#"><img
-					src="${pageContext.request.contextPath}/board/img/slide-1.jpg" /></a> <a
-					href="#"><img
-					src="${pageContext.request.contextPath}/board/img/slide-2.jpg" /></a> <a
-					href="#"><img
-					src="${pageContext.request.contextPath}/board/img/slide-3.jpg" /></a> <a
-					href="#"><img
-					src="${pageContext.request.contextPath}/board/img/slide-4.jpg" /></a>
-			</div>
-			<div class="slideshow_nav">
-				<a href="#" class="prev"><i
-					class="fa-solid fa-circle-chevron-left"></i></a> <a href="#"
-					class="next"><i class="fa-solid fa-circle-chevron-right"></i></a>
-			</div>
-			<div class="slideshow_indicator">
-				<a href="#"><i class="fa-regular fa-circle-dot"></i></a> <a href="#"><i
-					class="fa-regular fa-circle-dot"></i></a> <a href="#"><i
-					class="fa-regular fa-circle-dot"></i></a> <a href="#"><i
-					class="fa-regular fa-circle-dot"></i></a>
-			</div>
-		</div>
-	</section>
