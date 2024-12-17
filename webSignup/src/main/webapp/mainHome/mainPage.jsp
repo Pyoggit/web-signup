@@ -59,7 +59,7 @@
 				</div></li>
 			<li class="dropdown"><a href="#" class="dropbtn">커뮤니티</a>
 				<div class="dropdown-content">
-					<a href="#">공지사항</a> <a href="#">자유게시판</a> <a href="#">상품후기</a>
+					<a href="${pageContext.request.contextPath}/notice/list.jsp">공지사항</a> <a href="#">자유게시판</a> <a href="#">상품후기</a>
 				</div></li>
 			<li class="dropdown"><a href="#" class="dropbtn">문의(Q&A)</a>
 				<div class="dropdown-content">
@@ -111,7 +111,7 @@
         <ul>
             <% for (NoticeVO notice : noticeList) { %>
                 <li>
-                    <a href="noticeDetail.jsp?num=<%= notice.getNum() %>"><%= notice.getSubject() %></a>
+                    <a href="${pageContext.request.contextPath}/notice/content.jsp?num=<%= notice.getNum() %>"><%= notice.getSubject() %></a>
                     <span><%= sdf.format(notice.getRegdate()) %></span>
                 </li>
             <% } %>
@@ -131,7 +131,7 @@
             <% for (BoardVO board : boardList) { %>
                 <tr>
                     <td><%= board.getNum() %></td>
-                    <td><a href="content.jsp?num=<%= board.getNum() %>"><%= board.getSubject() %></a></td>
+                    <td><a href="${pageContext.request.contextPath}/board/content.jsp?num=<%= board.getNum() %>"><%= board.getSubject() %></a></td>
                     <td><%= board.getWriter() %></td>
                     <td><%= sdf.format(board.getRegdate()) %></td>
                 </tr>
