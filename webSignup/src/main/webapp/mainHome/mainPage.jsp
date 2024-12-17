@@ -61,9 +61,9 @@
 				<div class="dropdown-content">
 					<a href="${pageContext.request.contextPath}/notice/list.jsp">공지사항</a> <a href="#">자유게시판</a> <a href="#">상품후기</a>
 				</div></li>
-			<li class="dropdown"><a href="#" class="dropbtn">문의(Q&A)</a>
+			<li class="dropdown"><a href="#" class="dropbtn">고객지원</a>
 				<div class="dropdown-content">
-					<a href="${pageContext.request.contextPath}/board/list.jsp">게시글목록</a> <a href="${pageContext.request.contextPath}/board/writeForm.jsp">게시글쓰기</a>
+					<a href="${pageContext.request.contextPath}/board/list.jsp">글목록</a> <a href="${pageContext.request.contextPath}/board/writeForm.jsp">문의하기(Q&A)</a>
 				</div>
 			</li>
 		</ul>
@@ -140,32 +140,33 @@
     </section>
 
 		<!-- 오른쪽: 사용자 정보 또는 로그인 -->
-		<section class="user-section" style="flex: 1;">
-    <h3>사용자 정보</h3>
-    <% if (user != null) { %>
-        <p><strong>이름:</strong> <%= user.getName() %></p>
-        <p><strong>이메일:</strong> <%= user.getEmail() %></p>
-        <p><strong>전화번호:</strong> <%= user.getPhone1() %>-<%= user.getPhone2() %>-<%= user.getPhone3() %></p>
-        
-        <!-- 마이페이지와 로그아웃 버튼 -->
-        <div class="user-buttons" style="display: flex; gap: 10px; margin-top: 10px;">
-            <a href="${pageContext.request.contextPath}/signup/success.jsp" class="mypage-btn" 
-               style="padding: 10px 15px; background-color: #166cea; color: #fff; border-radius: 5px;">
-                마이페이지
-            </a>
-            <a href="${pageContext.request.contextPath}/logoutServlet.do" class="logout-btn" 
-               style="padding: 10px 15px; background-color: #d9534f; color: #fff; border-radius: 5px;">
-                로그아웃
-            </a>
-        </div>
-    <% } else { %>
-        <!-- 로그인 버튼 -->
-        <a href="${pageContext.request.contextPath}/signup/login.jsp" class="login-btn"
-           style="padding: 10px 15px; background-color: #28a745; color: #fff; border-radius: 5px;">
-            로그인하기
-        </a>
-    <% } %>
-</section>
+		<section class="user-section">
+		    <h3>사용자 정보</h3>
+		    <% if (user != null) { %>
+		        <!-- 로그인된 상태 -->
+		        <div class="user-info">
+		            <p><strong>이름:</strong> <%= user.getName() %></p>
+		            <p><strong>이메일:</strong> <%= user.getEmail() %></p>
+		            <p><strong>전화번호:</strong> <%= user.getPhone1() %>-<%= user.getPhone2() %>-<%= user.getPhone3() %></p>
+		        </div>
+		        <div class="user-buttons">
+		            <a href="${pageContext.request.contextPath}/signup/success.jsp" class="mypage-btn">
+		                마이페이지
+		            </a>
+		            <a href="${pageContext.request.contextPath}/logoutServlet.do" class="logout-btn">
+		                로그아웃
+		            </a>
+		        </div>
+		    <% } else { %>
+		        <!-- 로그아웃된 상태 -->
+		        <div class="user-login">
+		            <a href="${pageContext.request.contextPath}/signup/login.jsp" class="login-btn">
+		                로그인하기
+		            </a>
+		        </div>
+		    <% } %>
+		</section>
+
 
 
 
