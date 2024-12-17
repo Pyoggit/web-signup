@@ -34,9 +34,9 @@
 				<div class="dropdown-content">
 					<a href="list.jsp">공지사항</a> <a href="#">자유게시판</a> <a href="#">상품후기</a>
 				</div></li>
-			<li class="dropdown"><a href="#" class="dropbtn">문의(Q&A)</a>
+			<li class="dropdown"><a href="#" class="dropbtn">고객지원</a>
 				<div class="dropdown-content">
-					<a href="${pageContext.request.contextPath}/board/list.jsp">게시글목록</a> <a href="${pageContext.request.contextPath}/board/writeForm.jsp">게시글쓰기</a>
+					<a href="${pageContext.request.contextPath}/board/list.jsp">글목록</a> <a href="${pageContext.request.contextPath}/board/writeForm.jsp">문의하기(Q&A)</a>
 				</div>
 			</li>
 		</ul>

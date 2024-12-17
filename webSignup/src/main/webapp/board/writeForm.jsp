@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/board/css/board.css">
 
 <main class="write-container">
-    <div class="write-title">글쓰기</div>
+    <div class="write-title">문의하기</div>
     <form method="post" name="writeForm" action="writeProc.jsp" onsubmit="return writeSave()">
         <input type="hidden" name="num" value="<%= num %>">
         <input type="hidden" name="ref" value="<%= ref %>">
