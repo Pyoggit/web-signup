@@ -46,7 +46,7 @@
     <ul class="header-menu">
 			<li class="dropdown"><a href="#" class="dropbtn">페이지소개</a>
 				<div class="dropdown-content">
-					<a href="#">제작자</a> <a href="#">기여한사람들</a> <a href="#">참고문서</a>
+					<a href="https://github.com/Pyoggit" target="_blank">제작자</a> <a href="#">기여한사람들</a> <a href="#">참고문서</a>
 				</div></li>
 			<li class="dropdown"><a href="#" class="dropbtn">home2</a>
 				<div class="dropdown-content">

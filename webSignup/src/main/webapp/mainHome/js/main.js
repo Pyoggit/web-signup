@@ -149,9 +149,9 @@ function carousel() {
 
 document.addEventListener("DOMContentLoaded", function () {
     // 로그인 팝업창 열기
-    const loginButton = document.querySelector(".login-btn, .start-btn");
-    if (loginButton) {
-        loginButton.addEventListener("click", function (event) {
+    const loginButtons = document.querySelectorAll(".login-btn, .start-btn");
+    loginButtons.forEach(function (button) {
+        button.addEventListener("click", function (event) {
             event.preventDefault();
 
             const popupWidth = 550;
@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const popupY = Math.round((screenHeight - popupHeight) / 2);
 
             const popup = window.open(
-                loginButton.href,
+                button.href,
                 "LoginPopup",
                 `width=${popupWidth},height=${popupHeight},left=${popupX},top=${popupY},scrollbars=no,resizable=no`
             );
@@ -173,7 +173,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 alert("팝업 차단이 활성화되어 있습니다. 팝업을 허용해주세요.");
             }
         });
-    }
+    });
 
     // 마이페이지 팝업창 열기
     const mypageButton = document.querySelector(".mypage-btn");
@@ -211,3 +211,4 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
