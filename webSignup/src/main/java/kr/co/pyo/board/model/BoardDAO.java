@@ -42,6 +42,42 @@ public class BoardDAO {
 	private final String UPDATE_STEP_SQL = "update board set step=step+1 where ref= ? and step> ?";
 	private final String UPDATE_READCOUNT_SQL = "update board set readcount=readcount+1 where num = ?";
 
+	
+	
+
+	// 게시판 최근 N개 글 가져오기
+	public ArrayList<BoardVO> selectRecentBoards(int limit) {
+	    ArrayList<BoardVO> boardList = new ArrayList<>();
+	    String sql = "SELECT * FROM BOARD ORDER BY REGDATE DESC FETCH FIRST ? ROWS ONLY";
+	    try (Connection con = ConnectionPool.getInstance().dbCon();
+	         PreparedStatement pstmt = con.prepareStatement(sql)) {
+	        pstmt.setInt(1, limit);
+	        try (ResultSet rs = pstmt.executeQuery()) {
+	            while (rs.next()) {
+	                boardList.add(mapResultSetToBoardVO(rs));
+	            }
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return boardList;
+	}
+
+	// ResultSet을 BoardVO로 매핑하는 메서드
+	private BoardVO mapResultSetToBoardVO(ResultSet rs) throws SQLException {
+	    BoardVO vo = new BoardVO();
+	    vo.setNum(rs.getInt("NUM"));
+	    vo.setWriter(rs.getString("WRITER"));
+	    vo.setEmail(rs.getString("EMAIL"));
+	    vo.setSubject(rs.getString("SUBJECT"));
+	    vo.setRegdate(rs.getTimestamp("REGDATE"));
+	    vo.setReadcount(rs.getInt("READCOUNT"));
+	    return vo;
+	}
+
+
+	
+	
 	// 게시글 삭제하기
 	public boolean deleteDB(BoardVO vo) {
         ConnectionPool cp = ConnectionPool.getInstance();
