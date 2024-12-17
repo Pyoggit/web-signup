@@ -9,10 +9,15 @@
     int pageSize = 5;
     request.setCharacterEncoding("UTF-8");
     String pageNum = request.getParameter("pageNum");
-    if (pageNum == null) {
-        pageNum = "1";
+    int currentPage = 1; // 기본 페이지 설정
+    try {
+        if (pageNum == null || pageNum.trim().isEmpty()) {
+            pageNum = "1";
+        }
+        currentPage = Integer.parseInt(pageNum);
+    } catch (NumberFormatException e) {
+        currentPage = 1; // 잘못된 값이 들어오면 기본 페이지를 1로 설정
     }
-    int currentPage = Integer.parseInt(pageNum);
     int start = (currentPage - 1) * pageSize + 1;
     int end = currentPage * pageSize;
 
