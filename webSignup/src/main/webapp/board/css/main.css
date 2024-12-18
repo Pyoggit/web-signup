@@ -71,36 +71,57 @@ header {
   color: black;
   background-color: blueviolet;
 }
+
+
+/* 드롭다운 스타일 */
 .dropdown {
   position: relative;
   list-style: none;
 }
 
-div.dropdown-content {
+.dropdown-content {
   display: none;
   position: absolute;
-  background-color: #fff;
-  min-width: 160px;
-  z-index: 1;
-  box-shadow: 8px 8px 24px 8px rgba(0, 0, 0, 0.75);
-  list-style: none; 
-  padding: 0; 
-  margin: 0; 
-}
-
-div.dropdown-content a {
-  display: block;
-  padding: 16px 16px;
-  background-color: #ccc;
-}
-div.dropdown-content a:hover {
-  background-color: #fff;
-  color: black;
+  top: 100%;
+  left: 0;
+  min-width: 120px; /* 넓이 조금 확대 */
+  background-color: #fff; /* 배경 색상 */
+  border: 1px solid #ddd;
+  border-radius: 8px; /* 더 부드러운 모서리 */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* 자연스러운 그림자 */
+  z-index: 1000;
+  transition: opacity 0.3s ease, transform 0.3s ease; /* 부드러운 등장 효과 */
+  opacity: 0;
+  transform: translateY(10px);
 }
 
 .dropdown:hover .dropdown-content {
   display: block;
+  opacity: 1;
+  transform: translateY(0); /* 부드럽게 등장 */
 }
+
+.dropdown-content a {
+  display: block;
+  padding: 15px 20px; /* 더 큰 여백 추가 */
+  color: #333;
+  font-size: 1rem; /* 글씨 조금 확대 */
+  text-align: left; /* 왼쪽 정렬 */
+  font-weight: bold; /* 강조된 글씨 */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+  background-color: #166cea; /* 호버 시 강조된 배경색 */
+  color: #fff; /* 글씨색 변경 */
+}
+
+/* 드롭다운 항목 간 구분선 */
+.dropdown-content a:not(:last-child) {
+  border-bottom: 1px solid #e6e6e6;
+}
+
+
 
 .header-icons {
   list-style: none;

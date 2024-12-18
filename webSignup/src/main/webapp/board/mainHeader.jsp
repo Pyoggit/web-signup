@@ -1,4 +1,16 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page import="kr.co.pyo.user.model.UserVO" %>
+<%@ page import="kr.co.pyo.user.model.UserDAO" %>
+
+<%
+    // 세션에서 로그인 확인
+    String userId = (String) session.getAttribute("userId");
+    UserVO user = null;
+    if (userId != null) {
+        UserDAO udao = UserDAO.getInstance();
+        user = udao.getUserById(userId);
+    }
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -19,7 +31,7 @@
 		<ul class="header-menu">
 			<li class="dropdown"><a href="#" class="dropbtn">페이지소개</a>
 				<div class="dropdown-content">
-					<a href="#">제작자</a> <a href="#">기여한사람들</a> <a href="#">참고문서</a>
+					<a href="https://github.com/Pyoggit" target="_blank">제작자</a> <a href="#">기여한사람들</a> <a href="#">참고문서</a>
 				</div></li>
 			<li class="dropdown"><a href="#" class="dropbtn">home2</a>
 				<div class="dropdown-content">
@@ -32,7 +44,7 @@
 				</div></li>
 			<li class="dropdown"><a href="#" class="dropbtn">커뮤니티</a>
 				<div class="dropdown-content">
-					<a href="${pageContext.request.contextPath}/notice/list.jsp">공지사항</a> <a href="#">자유게시판</a> <a href="#">상품후기</a>
+					<a href="${pageContext.request.contextPath}/notice/list.jsp">공지사항</a> <a href="${pageContext.request.contextPath}/freeBoard/list.jsp">자유게시판</a> <a href="#">상품후기</a>
 				</div></li>
 			<li class="dropdown"><a href="#" class="dropbtn">고객지원</a>
 				<div class="dropdown-content">
@@ -41,8 +53,10 @@
 			</li>
 		</ul>
 		<ul class="header-icons">
-			<li><a
-				href="${pageContext.request.contextPath}/signup/login.jsp">시작하기</a>
-			</li>
-		</ul>
+        <% if (user != null) { %>
+            <li><strong><%= user.getName() %></strong>님, 환영합니다!</li>
+        <% } else { %>
+            <li><a href="${pageContext.request.contextPath}/signup/login.jsp" class="start-btn">시작하기</a></li>
+        <% } %>
+    </ul>
 	</header>
