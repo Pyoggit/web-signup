@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="kr.co.pyo.board.model.BoardVO" %>
 <%@ page import="kr.co.pyo.board.model.BoardDAO" %>
+<%@ page import="kr.co.pyo.freeBoard.model.FreeBoardVO" %>
+<%@ page import="kr.co.pyo.freeBoard.model.FreeBoardDAO" %>
 <%@ page import="kr.co.pyo.notice.model.NoticeVO" %>
 <%@ page import="kr.co.pyo.notice.model.NoticeDAO" %>
 <%@ page import="kr.co.pyo.user.model.UserVO" %>
@@ -32,9 +34,9 @@
     NoticeDAO ndao = NoticeDAO.getInstance();
     ArrayList<NoticeVO> noticeList = ndao.selectNoticeList(5); // 공지사항 최근 5개 가져오기
 
-    // 게시판 최신 글 가져오기
-    BoardDAO bdao = BoardDAO.getInstance();
-    ArrayList<BoardVO> boardList = bdao.selectRecentBoards(5); // 게시판 최근 5개 가져오기
+    // 자유 게시판 최신 글 가져오기
+    FreeBoardDAO fdao = FreeBoardDAO.getInstance();
+    ArrayList<FreeBoardVO> boardList = fdao.selectFreeBoardList(5); // 게시판 최근 5개 가져오기
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 %>
 
@@ -59,7 +61,7 @@
 				</div></li>
 			<li class="dropdown"><a href="#" class="dropbtn">커뮤니티</a>
 				<div class="dropdown-content">
-					<a href="${pageContext.request.contextPath}/notice/list.jsp">공지사항</a> <a href="#">자유게시판</a> <a href="#">상품후기</a>
+					<a href="${pageContext.request.contextPath}/notice/list.jsp">공지사항</a> <a href="${pageContext.request.contextPath}/freeBoard/list.jsp">자유게시판</a> <a href="#">상품후기</a>
 				</div></li>
 			<li class="dropdown"><a href="#" class="dropbtn">고객지원</a>
 				<div class="dropdown-content">
@@ -128,14 +130,25 @@
                 <th>작성자</th>
                 <th>작성일</th>
             </tr>
-            <% for (BoardVO board : boardList) { %>
-                <tr>
-                    <td><%= board.getNum() %></td>
-                    <td><a href="${pageContext.request.contextPath}/board/content.jsp?num=<%= board.getNum() %>"><%= board.getSubject() %></a></td>
-                    <td><%= board.getWriter() %></td>
-                    <td><%= sdf.format(board.getRegdate()) %></td>
-                </tr>
-            <% } %>
+            <% if (boardList == null || boardList.isEmpty()) { %>
+						    <tr>
+						        <td colspan="4">등록된 게시글이 없습니다.</td>
+						    </tr>
+						<% } else { 
+						    for (FreeBoardVO board : boardList) { %>
+						    <tr>
+						        <td><%= board.getNum() %></td>
+						        <td>
+						            <a href="${pageContext.request.contextPath}/freeBoard/content.jsp?num=<%= board.getNum() %>">
+						                <%= board.getSubject() %>
+						            </a>
+						        </td>
+						        <td><%= board.getWriter() %></td>
+						        <td><%= sdf.format(board.getRegdate()) %></td>
+						    </tr>
+						<%   }
+						   } 
+						 %>
         </table>
     </section>
 
