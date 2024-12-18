@@ -19,7 +19,7 @@
     FreeBoardDAO dao = FreeBoardDAO.getInstance();
 
     // 답변글인지 새 글인지 확인
-    boolean flag = dao.insertDB(vo);
+    boolean flag = dao.insertDB(vo, vo.getIp());
 
     if (flag) {
         // 게시글 등록 성공 시 리스트 페이지로 리다이렉트

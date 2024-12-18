@@ -1,7 +1,16 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="mainHeader.jsp" %>
 
 <%
+    // 로그인 확인
+    String writer = (String) session.getAttribute("userName");
+    String email = (String) session.getAttribute("userEmail");
+
+    if (writer == null || email == null) {
+        response.sendRedirect("${pageContext.request.contextPath}/signup/login.jsp");
+        return;
+    }
+
     int num = 0, ref = 1, step = 0, depth = 0;
     try {
         if (request.getParameter("num") != null) {
@@ -25,11 +34,11 @@
         <table class="write-table">
             <tr>
                 <th>닉네임</th>
-                <td><input type="text" size="12" maxlength="12" name="writer" /></td>
+                <td><input type="text" size="12" maxlength="12" name="writer" value="<%= writer %>" readonly /></td>
             </tr>
             <tr>
                 <th>이메일</th>
-                <td><input type="text" size="30" maxlength="30" name="email" /></td>
+                <td><input type="text" size="30" maxlength="30" name="email" value="<%= email %>" readonly /></td>
             </tr>
             <tr>
                 <th>제목</th>

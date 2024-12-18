@@ -5,12 +5,14 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import kr.co.pyo.signup.util.DBUtility;
 
 @WebServlet("/loginCheckServlet.do")
@@ -20,7 +22,6 @@ public class LoginCheckServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // 인코딩 설정
         request.setCharacterEncoding("UTF-8");
 
         String id = request.getParameter("id");
@@ -33,7 +34,6 @@ public class LoginCheckServlet extends HttpServlet {
             ResultSet rs = null;
 
             try {
-                // DB 연결
                 con = DBUtility.dbCon();
                 if (con == null) {
                     throw new ServletException("데이터베이스 연결에 실패했습니다.");
@@ -54,6 +54,10 @@ public class LoginCheckServlet extends HttpServlet {
                     session.setAttribute("userName", rs.getString("NAME"));
                     session.setAttribute("userEmail", rs.getString("EMAIL"));
                     session.setAttribute("userPhone", rs.getString("PHONE1") + "-" + rs.getString("PHONE2") + "-" + rs.getString("PHONE3"));
+                    
+                    // 사용자 IP 저장
+                    String userIp = request.getRemoteAddr();
+                    session.setAttribute("userIp", userIp);
 
                     // 부모창 이동 및 팝업창 닫기
                     response.setContentType("text/html; charset=UTF-8");
@@ -63,26 +67,26 @@ public class LoginCheckServlet extends HttpServlet {
                     out.println("window.close();");
                     out.println("</script>");
                 } else {
-                    // 로그인 실패 시 에러 메시지 설정 및 로그인 페이지로 이동
                     message = "아이디 또는 비밀번호가 잘못되었습니다.";
-                    response.sendRedirect(request.getContextPath() + "/signup/login.jsp?error=" + java.net.URLEncoder.encode(message, "UTF-8"));
+                    response.sendRedirect(request.getContextPath() + "/signup/login.jsp?error=" + 
+                        java.net.URLEncoder.encode(message, "UTF-8"));
                 }
             } catch (Exception e) {
                 message = "로그인 처리 중 오류 발생: " + e.getMessage();
                 System.out.println(message);
-                response.sendRedirect(request.getContextPath() + "/signup/login.jsp?error=" + java.net.URLEncoder.encode("로그인 처리 중 오류가 발생했습니다.", "UTF-8"));
+                response.sendRedirect(request.getContextPath() + "/signup/login.jsp?error=" +
+                        java.net.URLEncoder.encode("로그인 처리 중 오류가 발생했습니다.", "UTF-8"));
             } finally {
-                // 자원 해제
                 DBUtility.dbClose(con, pstmt, rs);
             }
         } else {
             message = "아이디와 비밀번호를 입력해 주세요.";
-            response.sendRedirect(request.getContextPath() + "/signup/login.jsp?error=" + java.net.URLEncoder.encode(message, "UTF-8"));
+            response.sendRedirect(request.getContextPath() + "/signup/login.jsp?error=" +
+                    java.net.URLEncoder.encode(message, "UTF-8"));
         }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // POST 요청으로만 접근해야 하므로, GET 요청이 오면 로그인 페이지로 리다이렉트
         response.sendRedirect(request.getContextPath() + "/signup/login.jsp");
     }
 }
