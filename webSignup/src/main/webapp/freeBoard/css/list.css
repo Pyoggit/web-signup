@@ -1,0 +1,153 @@
+@charset "UTF-8";
+
+/* 전체 공통 스타일 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  background-color: #f9f9f9;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* 리스트 컨테이너 간격 추가 */
+.list-container {
+  margin-top: 40px; /* section과의 간격 추가 */
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 테이블 스타일 */
+.list-table {
+  width: 100%;
+  max-width: 1000px; /* 테이블 크기 증가 */
+  margin: 0 auto;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 1rem;
+}
+
+.list-table th {
+  background-color: #f4f4f4;
+  color: #333;
+  font-weight: bold;
+  text-align: center;
+  padding: 15px;
+  border: 1px solid #ddd;
+}
+
+.list-table td {
+  text-align: center;
+  padding: 15px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+}
+
+/* 첫 번째 행 테두리 아래 선 제거 */
+.list-table tr:first-child td {
+  border-bottom: none;
+}
+
+/* 글쓰기 버튼 */
+.write-btn {
+  padding: 8px 15px; /* 버튼 크기 조정 */
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #166cea;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.write-btn:hover {
+  background-color: #004a9e;
+}
+
+/* 테이블 제목 */
+.list-title {
+  font-size: 1.5rem; /* 제목 크기 유지 */
+  font-weight: bold;
+  color: #333;
+  padding: 2px 5px; /* 높이를 줄이기 위해 패딩 조정 */
+  line-height: 1; /* 텍스트 줄 간격 조정 */
+}
+
+/* 글이 없을 때 메시지 */
+.list-empty {
+  text-align: center;
+  font-size: 1rem;
+  color: #777;
+  padding: 20px;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  margin-bottom: 20px;
+}
+
+.empty-write-btn {
+  margin-top: 10px;
+}
+
+.empty-write-btn .write-btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #166cea;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.empty-write-btn .write-btn:hover {
+  background-color: #004a9e;
+}
+
+/* 페이징 스타일 */
+.paging {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  font-size: 1rem;
+}
+
+.paging a {
+  display: inline-block;
+  margin: 0 5px;
+  padding: 8px 12px;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.paging a:hover {
+  background-color: #166cea;
+  color: #fff;
+  border-color: #166cea;
+}
+
+.paging a.current-page {
+  font-weight: bold;
+  color: #fff;
+  background-color: #166cea;
+  border-color: #166cea;
+  pointer-events: none; /* 현재 페이지는 클릭 불가능 */
+}
+
+.paging a.disabled {
+  color: #ccc;
+  cursor: not-allowed;
+  pointer-events: none;
+}
