@@ -40,6 +40,46 @@ public class FreeBoardDAO {
 	private final String UPDATE_STEP_SQL = "UPDATE FREEBOARD SET STEP = STEP + 1 WHERE REF = ? AND STEP > ?";
 	private final String UPDATE_READCOUNT_SQL = "UPDATE FREEBOARD SET READCOUNT = READCOUNT + 1 WHERE NUM = ?";
 
+	// 댓글 저장
+	public boolean insertComment(FreeBoardCommentVO comment) {
+		String sql = "INSERT INTO FREEBOARDCOMMENT (COMMENTID, BOARDNUM, WRITER, CONTENT, REGDATE) "
+				+ "VALUES (FREEBOARDCOMMENT_SEQ.NEXTVAL, ?, ?, ?, DEFAULT)";
+		try (Connection con = ConnectionPool.getInstance().dbCon();
+				PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setInt(1, comment.getBoardNum());
+			pstmt.setString(2, comment.getWriter());
+			pstmt.setString(3, comment.getContent());
+			return pstmt.executeUpdate() > 0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	// 댓글 목록 조회
+	public ArrayList<FreeBoardCommentVO> getCommentsByBoardNum(int boardNum) {
+		ArrayList<FreeBoardCommentVO> commentList = new ArrayList<>();
+		String sql = "SELECT * FROM FREEBOARDCOMMENT WHERE BOARDNUM = ? ORDER BY REGDATE ASC";
+		try (Connection con = ConnectionPool.getInstance().dbCon();
+				PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setInt(1, boardNum);
+			try (ResultSet rs = pstmt.executeQuery()) {
+				while (rs.next()) {
+					FreeBoardCommentVO comment = new FreeBoardCommentVO();
+					comment.setCommentId(rs.getInt("COMMENTID"));
+					comment.setBoardNum(rs.getInt("BOARDNUM"));
+					comment.setWriter(rs.getString("WRITER"));
+					comment.setContent(rs.getString("CONTENT"));
+					comment.setRegdate(rs.getTimestamp("REGDATE"));
+					commentList.add(comment);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return commentList;
+	}
+
 	// 자유게시판 최근 N개 가져오기
 	public ArrayList<FreeBoardVO> selectFreeBoardList(int limit) {
 		ArrayList<FreeBoardVO> boardList = new ArrayList<>();
@@ -73,6 +113,7 @@ public class FreeBoardDAO {
 		vo.setSubject(rs.getString("SUBJECT"));
 		vo.setRegdate(rs.getTimestamp("REGDATE"));
 		vo.setReadcount(rs.getInt("READCOUNT"));
+		vo.setIp(rs.getString("IP"));
 		return vo;
 	}
 
@@ -139,67 +180,72 @@ public class FreeBoardDAO {
 		return count != 0;
 	}
 
-	// 게시글 입력하기
+	// FreeBoardVO만 받는 insertDB 오버로딩 메서드 추가
 	public Boolean insertDB(FreeBoardVO vo) {
-		ConnectionPool cp = ConnectionPool.getInstance();
-		Connection con = cp.dbCon();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		int number = 0;
-		int step = 0;
-		int depth = 0;
-		int ref = 1;
-		int count = 0;
+	    return insertDB(vo, vo.getIp());
+	}
+	
+	// 게시글 입력하기
+	public Boolean insertDB(FreeBoardVO vo, String userIp) {
+	    ConnectionPool cp = ConnectionPool.getInstance();
+	    Connection con = cp.dbCon();
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    int number = 0;
+	    int step = 0;
+	    int depth = 0;
+	    int ref = 1;
+	    int count = 0;
 
-		try {
-			pstmt = con.prepareStatement(SELECT_MAX_NUM_SQL);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				number = rs.getInt("NUM") + 1;
-			} else {
-				number = 1;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+	    try {
+	        pstmt = con.prepareStatement(SELECT_MAX_NUM_SQL);
+	        rs = pstmt.executeQuery();
+	        if (rs.next()) {
+	            number = rs.getInt("NUM") + 1;
+	        } else {
+	            number = 1;
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
 
-		try {
-			if (vo.getNum() != 0) {
-				pstmt = con.prepareStatement(UPDATE_STEP_SQL);
-				pstmt.setInt(1, vo.getRef());
-				pstmt.setInt(2, vo.getStep());
-				pstmt.executeUpdate();
-				ref = vo.getRef();
-				step = vo.getStep() + 1;
-				depth = vo.getDepth() + 1;
-			} else {
-				ref = number;
-				step = 0;
-				depth = 0;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+	    try {
+	        if (vo.getNum() != 0) {
+	            pstmt = con.prepareStatement(UPDATE_STEP_SQL);
+	            pstmt.setInt(1, vo.getRef());
+	            pstmt.setInt(2, vo.getStep());
+	            pstmt.executeUpdate();
+	            ref = vo.getRef();
+	            step = vo.getStep() + 1;
+	            depth = vo.getDepth() + 1;
+	        } else {
+	            ref = number;
+	            step = 0;
+	            depth = 0;
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
 
-		try {
-			pstmt = con.prepareStatement(INSERT_SQL);
-			pstmt.setString(1, vo.getWriter());
-			pstmt.setString(2, vo.getEmail());
-			pstmt.setString(3, vo.getSubject());
-			pstmt.setString(4, vo.getPass());
-			pstmt.setTimestamp(5, vo.getRegdate());
-			pstmt.setInt(6, ref);
-			pstmt.setInt(7, step);
-			pstmt.setInt(8, depth);
-			pstmt.setString(9, vo.getContent());
-			pstmt.setString(10, vo.getIp());
-			count = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			cp.dbClose(con, pstmt);
-		}
-		return count > 0;
+	    try {
+	        pstmt = con.prepareStatement(INSERT_SQL);
+	        pstmt.setString(1, vo.getWriter()); // 닉네임 자동 입력
+	        pstmt.setString(2, vo.getEmail());  // 이메일 자동 입력
+	        pstmt.setString(3, vo.getSubject());
+	        pstmt.setString(4, vo.getPass());
+	        pstmt.setTimestamp(5, new Timestamp(System.currentTimeMillis()));
+	        pstmt.setInt(6, ref);
+	        pstmt.setInt(7, step);
+	        pstmt.setInt(8, depth);
+	        pstmt.setString(9, vo.getContent());
+	        pstmt.setString(10, userIp); // IP 주소 추가
+	        count = pstmt.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        cp.dbClose(con, pstmt, rs);
+	    }
+	    return count > 0;
 	}
 
 	// 특정 게시글 번호로 게시글 정보를 가져오기
@@ -284,30 +330,28 @@ public class FreeBoardDAO {
 		}
 		return boardList;
 	}
-	
-	
-	
-	 // 게시글 수정하기
-    public int updateDB(FreeBoardVO vo) {
-        ConnectionPool cp = ConnectionPool.getInstance();
-        Connection con = cp.dbCon();
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-        int count = 0;
 
-        try {
-            pstmt = con.prepareStatement(UPDATE_SQL);
-            pstmt.setString(1, vo.getWriter());
-            pstmt.setString(2, vo.getEmail());
-            pstmt.setString(3, vo.getSubject());
-            pstmt.setString(4, vo.getContent());
-            pstmt.setInt(5, vo.getNum());
-            count = pstmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            cp.dbClose(con, pstmt, rs);
-        }
-        return count;
-    }
+	// 게시글 수정하기
+	public int updateDB(FreeBoardVO vo) {
+		ConnectionPool cp = ConnectionPool.getInstance();
+		Connection con = cp.dbCon();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+
+		try {
+			pstmt = con.prepareStatement(UPDATE_SQL);
+			pstmt.setString(1, vo.getWriter());
+			pstmt.setString(2, vo.getEmail());
+			pstmt.setString(3, vo.getSubject());
+			pstmt.setString(4, vo.getContent());
+			pstmt.setInt(5, vo.getNum());
+			count = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			cp.dbClose(con, pstmt, rs);
+		}
+		return count;
+	}
 }

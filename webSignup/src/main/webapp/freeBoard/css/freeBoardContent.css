@@ -114,4 +114,95 @@ a {
     background-color: #388e3c;
 }
 
+/* 댓글 작성 폼 스타일 */
+.comment-form {
+  margin-top: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+.comment-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-form input[type="text"],
+.comment-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.comment-form input[type="text"]:focus,
+.comment-form textarea:focus {
+  border-color: #166cea;
+}
+
+.comment-form input[type="submit"] {
+  align-self: flex-end;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #166cea;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.comment-form input[type="submit"]:hover {
+  background-color: #004a9e;
+}
+
+/* 댓글 목록 스타일 */
+.comment-list {
+  margin-top: 30px;
+}
+
+.comment-list h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.comment-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.comment-list li {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.comment-list li p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.comment-list li p strong {
+  font-weight: bold;
+  color: #166cea;
+}
+
+.comment-list li p small {
+  font-size: 0.9rem;
+  color: #888;
+  display: block;
+  margin-top: 5px;
+}
+
+
 
