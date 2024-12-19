@@ -1,0 +1,99 @@
+@charset "UTF-8";
+
+/* 공통 스타일 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  background-color: #f9f9f9;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* 메인 컨테이너 */
+.delete-container {
+  margin-top: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+/* 제목 */
+.delete-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* 테이블 스타일 */
+.delete-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.delete-table th,
+.delete-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+}
+
+.delete-table th {
+  background-color: #f4f4f4;
+  text-align: center;
+}
+
+.delete-table td {
+  text-align: left;
+}
+
+/* 버튼 스타일 */
+.delete-buttons {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.delete-buttons input {
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #166cea;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.delete-buttons input:hover {
+  background-color: #004a9e;
+}
+
+.delete-buttons input[type="button"] {
+  background-color: #555;
+}
+
+.delete-buttons input[type="button"]:hover {
+  background-color: #333;
+}
+
+/* 삭제 확인 버튼 스타일 */
+.delete-confirm-btn {
+  background-color: #ff4d4d; /* 빨간색 배경 */
+}
+
+.delete-confirm-btn:hover {
+  background-color: #cc0000; /* 어두운 빨간색으로 변경 */
+}
