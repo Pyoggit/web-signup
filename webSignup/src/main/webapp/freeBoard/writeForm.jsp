@@ -2,15 +2,6 @@
 <%@ include file="mainHeader.jsp" %>
 
 <%
-    // 로그인 확인
-    String writer = (String) session.getAttribute("userName");
-    String email = (String) session.getAttribute("userEmail");
-
-    if (writer == null || email == null) {
-        response.sendRedirect("${pageContext.request.contextPath}/signup/login.jsp");
-        return;
-    }
-
     int num = 0, ref = 1, step = 0, depth = 0;
     try {
         if (request.getParameter("num") != null) {
@@ -18,6 +9,34 @@
             ref = Integer.parseInt(request.getParameter("ref"));
             step = Integer.parseInt(request.getParameter("step"));
             depth = Integer.parseInt(request.getParameter("depth"));
+        }
+
+        // 로그인 확인
+        String writer = (String) session.getAttribute("userName");
+        String email = (String) session.getAttribute("userEmail");
+
+        if (writer == null || email == null) {
+%>
+            <script>
+                alert("로그인 하셔야 합니다.");
+                const popupWidth = 550;
+                const popupHeight = 800;
+
+                const screenWidth = window.screen.width;
+                const screenHeight = window.screen.height;
+
+                const popupX = Math.round((screenWidth - popupWidth) / 2);
+                const popupY = Math.round((screenHeight - popupHeight) / 2);
+
+                window.open(
+                    '<%= request.getContextPath() %>/signup/login.jsp',
+                    'LoginPopup',
+                    `width=${popupWidth},height=${popupHeight},left=${popupX},top=${popupY},scrollbars=no,resizable=no`
+                );
+                history.back();
+            </script>
+<%
+            return;
         }
 %>
 
