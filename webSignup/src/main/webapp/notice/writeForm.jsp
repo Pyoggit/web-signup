@@ -10,9 +10,39 @@
             step = Integer.parseInt(request.getParameter("step"));
             depth = Integer.parseInt(request.getParameter("depth"));
         }
+
+        // 로그인 확인
+        String writer = (String) session.getAttribute("userName");
+        String email = (String) session.getAttribute("userEmail");
+
+        if (writer == null || email == null) {
+%>
+            <script>
+                alert("로그인 하셔야 합니다.");
+                const popupWidth = 550;
+                const popupHeight = 800;
+
+                const screenWidth = window.screen.width;
+                const screenHeight = window.screen.height;
+
+                const popupX = Math.round((screenWidth - popupWidth) / 2);
+                const popupY = Math.round((screenHeight - popupHeight) / 2);
+
+                window.open(
+                    '<%= request.getContextPath() %>/signup/login.jsp',
+                    'LoginPopup',
+                    `width=${popupWidth},height=${popupHeight},left=${popupX},top=${popupY},scrollbars=no,resizable=no`
+                );
+                history.back();
+            </script>
+<%
+            return;
+        }
 %>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/notice/css/notice.css">
+
+<script src="${pageContext.request.contextPath}/notice/js/notice.js"></script>
 
 <main class="write-container">
     <div class="write-title">공지사항 작성</div>
@@ -25,11 +55,11 @@
         <table class="write-table">
             <tr>
                 <th>닉네임</th>
-                <td><input type="text" size="12" maxlength="12" name="writer" /></td>
+                <td><input type="text" size="12" maxlength="12" name="writer" value="<%= writer %>" readonly /></td>
             </tr>
             <tr>
                 <th>이메일</th>
-                <td><input type="text" size="30" maxlength="30" name="email" /></td>
+                <td><input type="text" size="30" maxlength="30" name="email" value="<%= email %>" readonly /></td>
             </tr>
             <tr>
                 <th>제목</th>
@@ -67,7 +97,7 @@
 
 <%
     } catch (Exception e) {
-        out.println("오류가 발생했습니다.");
+        out.println("<script>alert('오류가 발생했습니다: " + e.getMessage() + "'); history.back();</script>");
     }
 %>
 <%@ include file="mainFooter.jsp" %>
