@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import kr.co.pyo.signup.util.ConnectionPool;
 
 public class NoticeDAO {
+	// 싱글톤--------------------------------------------------------------------------------------
 		private static NoticeDAO instance;
 
 		private NoticeDAO() {
@@ -25,6 +26,7 @@ public class NoticeDAO {
 			return instance;
 		}
 
+	// ------------------------------------------------------------------------------------------
 		private final String SELECT_SQL = "SELECT * FROM NOTICE ORDER BY NUM DESC";
 		private final String SELECT_START_END_SQL = 
 		    "SELECT * FROM "
