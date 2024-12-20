@@ -39,6 +39,7 @@ SELECT * FROM ZIPCODE WHERE DONG LIKE '권선%';
 SELECT PHONE1, PHONE2, PHONE3 FROM SIGNUP WHERE ID = 'aaa123';
 
 -- 게시판 테이블
+DROP TABLE BOARD;
 CREATE TABLE BOARD (
     NUM         NUMBER(7,0) NOT NULL, 
     WRITER      VARCHAR2(12) NOT NULL,   
@@ -73,6 +74,8 @@ CREATE SEQUENCE BOARD_SEQ
 SELECT * FROM BOARD;
 
 SELECT COUNT(*) AS COUNT FROM BOARD;
+ 
+ 
  
 -- 공지사항 테이블 
 CREATE TABLE NOTICE (
@@ -161,4 +164,31 @@ CREATE TABLE FREEBOARDCOMMENT (
 
 ALTER TABLE FREEBOARDCOMMENT 
 ADD CONSTRAINT FK_BOARD_COMMENT FOREIGN KEY (BOARDNUM) REFERENCES FREEBOARD(NUM);
+
+
+CREATE SEQUENCE FREEBOARDCOMMENT_SEQ
+START WITH 1
+INCREMENT BY 1
+NOMAXVALUE
+NOCYCLE;
+
+CREATE TABLE Product (
+    bookID VARCHAR2(50) PRIMARY KEY, -- 도서 ID
+    bookName VARCHAR2(100) NOT NULL, -- 도서명
+    unitPrice NUMBER(10) NOT NULL, -- 가격
+    description CLOB, -- 상세 설명
+    author VARCHAR2(100), -- 저자
+    publisher VARCHAR2(100), -- 출판사
+    category VARCHAR2(50), -- 카테고리
+    filename VARCHAR2(255), -- 파일 이름
+    unitsInStock NUMBER(10), -- 재고 수량
+    productCondition VARCHAR2(10) CHECK (productCondition IN ('New', 'Old', 'E-Book')) -- 상태 제한
+);
+
+INSERT INTO Product (bookID, bookName, unitPrice, description, author, publisher, category, filename, unitsInStock, productCondition) 
+VALUES ('P001', 'Sample Book', 10000, 'This is a sample book description.', 'John Doe', 'Sample Publisher', 'Fiction', 'sample.jpg', 100, 'New');
+commit;
+
+SELECT * FROM Product;
+
 
