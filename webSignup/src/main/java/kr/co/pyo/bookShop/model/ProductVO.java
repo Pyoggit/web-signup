@@ -17,6 +17,7 @@ public class ProductVO implements Serializable {
 		private String releaseDate;	//출판일
 		private String condition;	//신규 or 중고 or E-Book
 		private String filename;
+		private int quantity;
 
 		public ProductVO() {
 			super();
@@ -122,5 +123,13 @@ public class ProductVO implements Serializable {
 
 		public void setFilename(String filename) {
 			this.filename = filename;
+		}
+		
+		public int getQuantity() {
+			return quantity;
+		}
+
+		public void setQuantity(int quantity) {
+			this.quantity = quantity;
 		}
 	}
