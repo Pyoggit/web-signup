@@ -48,16 +48,15 @@
     <ul class="header-menu">
 			<li class="dropdown"><a href="#" class="dropbtn">페이지소개</a>
 				<div class="dropdown-content">
-					<a href="https://github.com/Pyoggit" target="_blank">제작자</a> <a href="#">기여한사람들</a> <a href="#">참고문서</a>
+					<a href="https://github.com/Pyoggit" target="_blank">제작자</a> <a href="https://github.com/Pyoggit" target="_blank">기여한사람들</a> <a href="#">참고문서</a>
 				</div></li>
-			<li class="dropdown"><a href="#" class="dropbtn">home2</a>
+			<li class="dropdown"><a href="#" class="dropbtn">구매/판매</a>
 				<div class="dropdown-content">
-					<a href="#">menu1</a> <a href="#">menu2</a>
+					<a href="${pageContext.request.contextPath}/bookShop/addProduct.jsp">상품등록하기</a> <a href="#">장바구니</a>
 				</div></li>
 			<li class="dropdown"><a href="#" class="dropbtn">상품</a>
 				<div class="dropdown-content">
-					<a href="#">도서</a> <a href="#">의류</a> <a href="#">식품</a> <a
-						href="#">전자제품</a> <a href="#">주류</a>
+					<a href="${pageContext.request.contextPath}/bookShop/products.jsp">도서</a> <a href="#">의류</a> <a href="#">식품</a> <a href="#">전자제품</a> <a href="#">주류</a>
 				</div></li>
 			<li class="dropdown"><a href="#" class="dropbtn">커뮤니티</a>
 				<div class="dropdown-content">
@@ -65,7 +64,7 @@
 				</div></li>
 			<li class="dropdown"><a href="#" class="dropbtn">고객지원</a>
 				<div class="dropdown-content">
-					<a href="${pageContext.request.contextPath}/board/list.jsp">글목록</a> <a href="${pageContext.request.contextPath}/board/writeForm.jsp">문의하기(Q&A)</a>
+					<a href="${pageContext.request.contextPath}/board/list.jsp">문의글목록</a> <a href="${pageContext.request.contextPath}/board/writeForm.jsp">문의하기(Q&A)</a>
 				</div>
 			</li>
 		</ul>
