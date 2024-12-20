@@ -95,9 +95,9 @@
                 <% }
                 for (int i = startPage; i <= endPage; i++) {
                     if (currentPage == i) { %>
-                        <a class="current-page" href="#">[<%= i %>]</a>
+                        <a class="current-page" href="#"><%= i %></a>
                     <% } else { %>
-                        <a href="list.jsp?pageNum=<%= i %>">[<%= i %>]</a>
+                        <a href="list.jsp?pageNum=<%= i %>"><%= i %></a>
                     <% }
                 }
                 if (endPage < pageCount) { %>
