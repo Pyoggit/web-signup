@@ -33,14 +33,13 @@
 				<div class="dropdown-content">
 					<a href="https://github.com/Pyoggit" target="_blank">제작자</a> <a href="#">기여한사람들</a> <a href="#">참고문서</a>
 				</div></li>
-			<li class="dropdown"><a href="#" class="dropbtn">home2</a>
+			<li class="dropdown"><a href="#" class="dropbtn">구매/판매</a>
 				<div class="dropdown-content">
-					<a href="#">menu1</a> <a href="#">menu2</a>
+					<a href="${pageContext.request.contextPath}/bookShop/addProduct.jsp">상품등록하기</a> <a href="${pageContext.request.contextPath}/bookShop/cart.jsp">장바구니</a>
 				</div></li>
 			<li class="dropdown"><a href="#" class="dropbtn">상품</a>
 				<div class="dropdown-content">
-					<a href="#">도서</a> <a href="#">의류</a> <a href="#">식품</a> <a
-						href="#">전자제품</a> <a href="#">주류</a>
+					<a href="${pageContext.request.contextPath}/bookShop/products.jsp">도서</a> <a href="#">의류</a> <a href="#">식품</a> <a href="#">전자제품</a> <a href="#">주류</a>
 				</div></li>
 			<li class="dropdown"><a href="#" class="dropbtn">커뮤니티</a>
 				<div class="dropdown-content">

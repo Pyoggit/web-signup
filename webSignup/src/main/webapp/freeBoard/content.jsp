@@ -1,5 +1,5 @@
-<%@page import="kr.co.pyo.freeBoard.model.FreeBoardCommentVO"%>
-<%@page import="java.util.ArrayList"%>
+<%@	page import="kr.co.pyo.freeBoard.model.FreeBoardCommentVO"%>
+<%@	page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.text.SimpleDateFormat"%>
 <%@ page import="kr.co.pyo.freeBoard.model.FreeBoardDAO"%>

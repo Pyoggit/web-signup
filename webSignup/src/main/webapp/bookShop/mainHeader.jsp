@@ -18,8 +18,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>메인페이지</title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/notice/css/main.css" />
-<script src="${pageContext.request.contextPath}/notice/js/notice.js"></script>
+	href="${pageContext.request.contextPath}/bookShop/css/main.css" />
+<script src="${pageContext.request.contextPath}/bookShop/js/bookShop.js"></script>
 <script src="https://kit.fontawesome.com/01ba7af47f.js"
 	crossorigin="anonymous"></script>
 </head>
@@ -43,7 +43,7 @@
 				</div></li>
 			<li class="dropdown"><a href="#" class="dropbtn">커뮤니티</a>
 				<div class="dropdown-content">
-					<a href="list.jsp">공지사항</a> <a href="${pageContext.request.contextPath}/freeBoard/list.jsp">자유게시판</a> <a href="#">상품후기</a>
+					<a href="${pageContext.request.contextPath}/notice/list.jsp">공지사항</a> <a href="${pageContext.request.contextPath}/freeBoard/list.jsp">자유게시판</a> <a href="#">상품후기</a>
 				</div></li>
 			<li class="dropdown"><a href="#" class="dropbtn">고객지원</a>
 				<div class="dropdown-content">
