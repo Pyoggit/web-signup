@@ -64,6 +64,6 @@
     dao.addProduct(newProduct); // DB에 저장
 
 		// 완료 후 페이지 이동
-    response.sendRedirect(request.getContextPath() + "/products.jsp");
+    response.sendRedirect(request.getContextPath() + "/bookShop/products.jsp");
 
 %>
