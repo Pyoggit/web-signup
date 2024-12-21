@@ -46,41 +46,38 @@ public class ProductDAO {
         return products;
     }
 
+    
     public ProductVO getProductById(String id) {
         String sql = "SELECT * FROM Product WHERE bookID = ?";
-        Connection con = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-
-        try {
-            con = ConnectionPool.getInstance().dbCon();
-            pstmt = con.prepareStatement(sql);
+        try (
+            Connection con = ConnectionPool.getInstance().dbCon();
+            PreparedStatement pstmt = con.prepareStatement(sql)
+        ) {
             pstmt.setString(1, id);
-            rs = pstmt.executeQuery();
-
-            if (rs.next()) {
-                ProductVO product = new ProductVO();
-                product.setBookID(rs.getString("bookID"));
-                product.setBookName(rs.getString("bookName"));
-                product.setUnitPrice(rs.getInt("unitPrice"));
-                product.setDescription(rs.getString("description"));
-                product.setAuthor(rs.getString("author"));
-                product.setPublisher(rs.getString("publisher"));
-                product.setCategory(rs.getString("category"));
-                product.setUnitsInStock(rs.getLong("unitsInStock"));
-                product.setCondition(rs.getString("productCondition"));
-                product.setFilename(rs.getString("filename"));
-                product.setQuantity(rs.getInt("quantity")); // 추가된 필드
-                return product;
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    ProductVO product = new ProductVO();
+                    product.setBookID(rs.getString("bookID"));
+                    product.setBookName(rs.getString("bookName"));
+                    product.setUnitPrice(rs.getInt("unitPrice"));
+                    product.setDescription(rs.getString("description"));
+                    product.setAuthor(rs.getString("author"));
+                    product.setPublisher(rs.getString("publisher"));
+                    product.setCategory(rs.getString("category"));
+                    product.setUnitsInStock(rs.getLong("unitsInStock"));
+                    product.setCondition(rs.getString("productCondition"));
+                    product.setFilename(rs.getString("filename"));
+                    return product;
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            closeResources(rs, pstmt, con);
         }
         return null;
     }
 
+    
+    
     public void updateProductQuantity(String id, int quantity) {
         String sql = "UPDATE Product SET quantity = ? WHERE bookID = ?";
         Connection con = null;
