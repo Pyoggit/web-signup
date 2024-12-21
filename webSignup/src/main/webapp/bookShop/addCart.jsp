@@ -1,7 +1,7 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="kr.co.pyo.bookShop.model.ProductVO" %>
-<%@ page import="kr.co.pyo.bookShop.model.ProductDAO" %>
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="kr.co.pyo.bookShop.model.ProductVO"%>
+<%@ page import="kr.co.pyo.bookShop.model.ProductDAO"%>
 
 <%
     String id = request.getParameter("id");
@@ -11,10 +11,9 @@
     }
 
     ProductDAO dao = new ProductDAO();
-    ProductVO product = dao.getProductById(id);
-
-    if (product == null) {
-        response.sendRedirect("products.jsp");
+    ProductVO book = dao.getProductById(id);
+    if (book == null) {
+        response.sendRedirect("exceptionNoBookId.jsp");
         return;
     }
 
@@ -25,19 +24,19 @@
     }
 
     boolean isExisting = false;
-    for (ProductVO item : cartList) {
-        if (item.getBookID().equals(product.getBookID())) {
-            item.setQuantity(item.getQuantity() + 1);
+    for (ProductVO cartItem : cartList) {
+        if (cartItem.getBookID().equals(book.getBookID())) {
+            cartItem.setQuantity(cartItem.getQuantity() + 1);
             isExisting = true;
             break;
         }
     }
 
     if (!isExisting) {
-        product.setQuantity(1);
-        cartList.add(product);
+        book.setQuantity(1);
+        cartList.add(book);
     }
 
     session.setAttribute("cartlist", cartList);
-    response.sendRedirect("cart.jsp");
+    response.sendRedirect("product.jsp?id=" + id);
 %>
