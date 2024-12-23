@@ -48,6 +48,8 @@ public class BoardDAO {
 	private final String SELECT_ZIP_SQL = "select * from zipcode where dong like ?";
 
 	public Boolean insertDB(BoardVO vo) {
+//		Connection con = null;
+//		Context contect = new InitialContext();
 		ConnectionPool cp = ConnectionPool.getInstance();
 		Connection con = cp.dbCon();
 		PreparedStatement pstmt = null;
