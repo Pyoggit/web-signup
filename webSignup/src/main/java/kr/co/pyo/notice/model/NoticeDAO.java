@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
-import kr.co.pyo.signup.util.ConnectionPool;
+import kr.co.pyo.util.ConnectionPool;
 
 public class NoticeDAO {
 	// 싱글톤--------------------------------------------------------------------------------------

@@ -32,4 +32,4 @@ String pageNum = request.getParameter("pageNum");
 	</form>
 </main>
 
-<%@ include file="mainFooter.jsp"%>
+<%@ include file="/includes/mainFooter.jsp"%>

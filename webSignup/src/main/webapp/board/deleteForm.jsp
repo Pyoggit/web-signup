@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ include file="mainHeader.jsp"%>
+<%@ include file="/includes/mainHeader.jsp" %>
 
 <%
     request.setCharacterEncoding("UTF-8");
@@ -40,4 +40,4 @@
 </body>
 </html>
 
-<%@ include file="mainFooter.jsp"%>
+<%@ include file="/includes/mainFooter.jsp" %>

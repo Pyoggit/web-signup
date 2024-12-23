@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ include file="mainHeader.jsp" %>
+<%@ include file="/includes/mainHeader.jsp" %>
 
 <%
     int num = 0, ref = 1, step = 0, depth = 0;
@@ -100,4 +100,4 @@
         out.println("<script>alert('오류가 발생했습니다: " + e.getMessage() + "'); history.back();</script>");
     }
 %>
-<%@ include file="mainFooter.jsp" %>
+<%@ include file="/includes/mainFooter.jsp" %>

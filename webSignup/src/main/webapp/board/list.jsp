@@ -3,7 +3,7 @@
 <%@ page import="kr.co.pyo.board.model.BoardVO"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.text.SimpleDateFormat"%>
-<%@ include file="mainHeader.jsp" %>
+<%@ include file="/includes/mainHeader.jsp" %>
 
 <%
  // 페이징 설정
@@ -108,4 +108,4 @@
     </main>
 </body>
 </html>
-<%@ include file="mainFooter.jsp" %>
+<%@ include file="/includes/mainFooter.jsp" %>

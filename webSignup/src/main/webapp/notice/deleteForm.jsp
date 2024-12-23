@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ include file="mainHeader.jsp"%>
+<%@ include file="/includes/mainHeader.jsp"%>
 
 <%
 int num = Integer.parseInt(request.getParameter("num"));
@@ -33,4 +33,4 @@ String pageNum = request.getParameter("pageNum");
 	</form>
 </main>
 
-<%@ include file="mainFooter.jsp"%>
+<%@ include file="/includes/mainFooter.jsp"%>

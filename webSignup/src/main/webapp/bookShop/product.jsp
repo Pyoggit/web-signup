@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="kr.co.pyo.bookShop.model.ProductDAO" %>
 <%@ page import="kr.co.pyo.bookShop.model.ProductVO" %>
-<%@ include file="mainHeader.jsp" %>
+<%@ include file="/includes/mainHeader.jsp" %>
 
 <%
     String id = request.getParameter("id");
@@ -76,4 +76,4 @@
 <%
     }
 %>
-<%@ include file="mainFooter.jsp" %>
+<%@ include file="/includes/mainFooter.jsp" %>

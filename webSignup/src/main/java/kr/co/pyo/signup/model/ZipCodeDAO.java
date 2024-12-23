@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import kr.co.pyo.signup.util.DBUtility;
+import kr.co.pyo.util.DBUtility;
 
 public class ZipCodeDAO {
 

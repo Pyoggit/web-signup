@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ include file="mainHeader.jsp" %>
+<%@ include file="/includes/mainHeader.jsp" %>
 
 <%
     int num = 0, ref = 0, step = 0, depth = 0;
@@ -69,4 +69,4 @@
         e.printStackTrace();
     }
 %>
-<%@ include file="mainFooter.jsp" %>
+<%@ include file="/includes/mainFooter.jsp" %>

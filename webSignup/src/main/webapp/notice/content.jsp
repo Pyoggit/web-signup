@@ -2,7 +2,7 @@
 <%@ page import="java.text.SimpleDateFormat"%>
 <%@ page import="kr.co.pyo.notice.model.NoticeDAO"%>
 <%@ page import="kr.co.pyo.notice.model.NoticeVO"%>
-<%@ include file="mainHeader.jsp"%>
+<%@ include file="/includes/mainHeader.jsp"%>
 
 <%
 request.setCharacterEncoding("UTF-8");
@@ -64,4 +64,4 @@ if (nvo == null) {
 	</form>
 </main>
 
-<%@ include file="mainFooter.jsp"%>
+<%@ include file="/includes/mainFooter.jsp"%>

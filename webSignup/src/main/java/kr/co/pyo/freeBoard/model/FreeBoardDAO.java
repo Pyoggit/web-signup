@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import kr.co.pyo.notice.model.NoticeVO;
-import kr.co.pyo.signup.util.ConnectionPool;
+import kr.co.pyo.util.ConnectionPool;
 
 public class FreeBoardDAO {
 	private static FreeBoardDAO instance;

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="kr.co.pyo.notice.model.NoticeDAO"%>
 <%@ page import="kr.co.pyo.notice.model.NoticeVO"%>
-<%@ include file="mainHeader.jsp" %>
+<%@ include file="/includes/mainHeader.jsp" %>
 
 <%
     int num = Integer.parseInt(request.getParameter("num"));
@@ -72,4 +72,4 @@
         e.printStackTrace();
     }
 %>
-<%@ include file="mainFooter.jsp" %>
+<%@ include file="/includes/mainFooter.jsp" %>

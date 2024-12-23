@@ -2,7 +2,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="kr.co.pyo.bookShop.model.ProductVO" %>
 <%@ page import="kr.co.pyo.bookShop.model.ProductDAO" %>
-<%@ include file="mainHeader.jsp" %>
+<%@ include file="/includes/mainHeader.jsp" %>
 
 <html>
 <head>
@@ -73,4 +73,4 @@
     </div>
 </body>
 </html>
-<%@ include file="mainFooter.jsp" %>
+<%@ include file="/includes/mainFooter.jsp" %>

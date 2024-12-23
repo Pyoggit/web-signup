@@ -98,4 +98,4 @@
         out.println("오류가 발생했습니다.");
     }
 %>
-<%@ include file="mainFooter.jsp" %>
+<%@ include file="/includes/mainFooter.jsp" %>

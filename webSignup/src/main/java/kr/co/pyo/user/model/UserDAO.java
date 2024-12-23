@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import kr.co.pyo.signup.util.ConnectionPool;
+import kr.co.pyo.util.ConnectionPool;
 
 public class UserDAO {
     // 싱글톤 패턴

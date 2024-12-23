@@ -144,4 +144,4 @@
     %>
 </div>
 
-<%@ include file="mainFooter.jsp" %>
+<%@ include file="/includes/mainFooter.jsp" %>

@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ include file="mainHeader.jsp"%>
+<%@ include file="/includes/mainHeader.jsp"%>
 <html>
 <head>
     <title>상품등록페이지</title>
@@ -86,4 +86,4 @@
     </div>
 </body>
 </html>
-<%@ include file="mainFooter.jsp"%> 
+<%@ include file="/includes/mainFooter.jsp"%> 

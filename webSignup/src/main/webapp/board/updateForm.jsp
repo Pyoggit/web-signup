@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="kr.co.pyo.board.model.BoardDAO"%>
 <%@ page import="kr.co.pyo.board.model.BoardVO"%>
-<%@ include file="mainHeader.jsp" %>
+<%@ include file="/includes/mainHeader.jsp" %>
 
 <%
 request.setCharacterEncoding("UTF-8");
@@ -65,4 +65,4 @@ try {
     e.printStackTrace();
 }
 %>
-<%@ include file="mainFooter.jsp" %>
+<%@ include file="/includes/mainFooter.jsp" %>

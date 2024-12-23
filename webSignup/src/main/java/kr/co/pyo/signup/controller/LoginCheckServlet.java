@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import kr.co.pyo.signup.util.DBUtility;
+import kr.co.pyo.util.DBUtility;
 
 @WebServlet("/loginCheckServlet.do")
 public class LoginCheckServlet extends HttpServlet {
