@@ -26,8 +26,7 @@
     <script type="text/javascript">
 		    function addToCart(bookID) {
 		        if (confirm('상품을 장바구니에 추가하시겠습니까?')) {
-		            document.addForm.action = './addCart.jsp?id=' + bookID;
-		            document.addForm.submit();
+		            window.location.href = './addCart.jsp?id=' + bookID;
 		        } else {
 		            // 취소 시 상품목록 페이지로 이동
 		            window.location.href = './products.jsp';
@@ -63,8 +62,7 @@
                 <div class="product-price"><%= product.getUnitPrice() %>원</div>
                 <!-- 액션 버튼 -->
                 <div class="product-actions">
-								    <a href="${pageContext.request.contextPath}/bookShop/cart.jsp?id=<%= product.getBookID() %>" class="btn btn-warning" onclick="addToCart()">장바구니 추가</a>
-								    <a href="${pageContext.request.contextPath}/bookShop/order.jsp?id=<%= product.getBookID() %>" class="btn btn-info">상품 주문</a>
+                		<a href="javascript:void(0);" class="btn btn-warning" onclick="addToCart('<%= product.getBookID() %>')">장바구니 추가</a>
 								    <a href="${pageContext.request.contextPath}/bookShop/products.jsp" class="btn btn-secondary">상품 목록</a>
 								</div>
                 
