@@ -6,11 +6,27 @@
 <head>
     <title>장바구니</title>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700&display=swap" rel="stylesheet">    
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/bookShop/css/bookCart.css?timestamp=<%= System.currentTimeMillis() %>">
+    <script>
+        // 전체 선택 / 해제 기능
+        function toggleAllCheckboxes(source) {
+            const checkboxes = document.querySelectorAll('.chk');
+            checkboxes.forEach((checkbox) => {
+                checkbox.checked = source.checked;
+            });
+        }
+
+        // 장바구니가 비어 있으면 폼 숨기기
+        window.onload = function() {
+            const cartForm = document.getElementById('cartForm');
+            const cartItems = document.querySelectorAll('.cart-table tbody tr');
+            if (cartItems.length === 0) {
+                cartForm.style.display = 'none';
+            }
+        };
+    </script>
 </head>
 <body>
     <div class="jumbotron">
@@ -23,7 +39,7 @@
             <table class="cart-table">
                 <thead>
                     <tr>
-                        <th><input type="checkbox" id="allChk" checked></th>
+                        <th><input type="checkbox" id="allChk" onclick="toggleAllCheckboxes(this)" checked></th>
                         <th>상품</th>
                         <th>가격</th>
                         <th>수량</th>
@@ -34,29 +50,26 @@
                 <tbody>
                     <%
                         ArrayList<ProductVO> cartList = (ArrayList<ProductVO>) session.getAttribute("cartlist");
-                        if (cartList == null) {
-                            cartList = new ArrayList<>();
-                        }
-                        int sum = 0;
-                        if (cartList.isEmpty()) {
+                        if (cartList == null || cartList.isEmpty()) {
                     %>
                     <tr>
                         <td colspan="6" class="text-center">장바구니가 비어 있습니다.</td>
                     </tr>
                     <%
                         } else {
-                            for (ProductVO book : cartList) {
-                                int total = book.getUnitPrice() * book.getQuantity();
+                            int sum = 0;
+                            for (ProductVO product : cartList) {
+                                int total = product.getUnitPrice() * product.getQuantity();
                                 sum += total;
                     %>
                     <tr>
-                        <td><input type="checkbox" class="chk" name="selectedIds" value="<%= book.getBookID() %>" checked></td>
-                        <td><%= book.getBookID() %> - <%= book.getBookName() %></td>
-                        <td><%= book.getUnitPrice() %>원</td>
-                        <td><%= book.getQuantity() %></td>
+                        <td><input type="checkbox" class="chk" name="selectedIds" value="<%= product.getBookID() %>" checked></td>
+                        <td><%= product.getBookID() %> - <%= product.getBookName() %></td>
+                        <td><%= product.getUnitPrice() %>원</td>
+                        <td><%= product.getQuantity() %></td>
                         <td><%= total %>원</td>
                         <td>
-                            <a href="removeCart.jsp?id=<%= book.getBookID() %>" class="btn btn-danger btn-sm">삭제</a>
+                            <a href="removeCart.jsp?id=<%= product.getBookID() %>" class="btn btn-danger btn-sm">삭제</a>
                         </td>
                     </tr>
                     <%
