@@ -18,10 +18,10 @@ public final class ConnectionPool {
         }
     }
 
-    private ArrayList<Connection> free;
-    private ArrayList<Connection> used;
-    private int initialCons = 10;
-    private int maxCons = 20;
+    private final ArrayList<Connection> free;
+    private final ArrayList<Connection> used;
+    private final int initialCons = 10;
+    private final int maxCons = 20;
     private int numCons = 0;
     private String user;
     private String pw;
@@ -56,12 +56,13 @@ public final class ConnectionPool {
         }
     }
 
-    private synchronized Connection getNewConnection() {
+    private Connection getNewConnection() {
         try {
             numCons++;
             return DriverManager.getConnection(url, user, pw);
         } catch (Exception e) {
             e.printStackTrace();
+            numCons--;
             return null;
         }
     }
@@ -80,9 +81,19 @@ public final class ConnectionPool {
         }
     }
 
-    public synchronized void releaseConnection(Connection con) {
-        if (used.remove(con)) {
-            free.add(con);
+    public void releaseConnection(Connection con) {
+        if (con != null) {
+            synchronized (this) {
+                if (used.remove(con)) {
+                    free.add(con);
+                } else {
+                    try {
+                        con.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
         }
     }
 
@@ -90,7 +101,7 @@ public final class ConnectionPool {
         try {
             if (rs != null) rs.close();
             if (pstmt != null) pstmt.close();
-            if (con != null) releaseConnection(con);
+            releaseConnection(con);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -100,7 +111,7 @@ public final class ConnectionPool {
         try {
             if (rs != null) rs.close();
             if (stmt != null) stmt.close();
-            if (con != null) releaseConnection(con);
+            releaseConnection(con);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -109,7 +120,7 @@ public final class ConnectionPool {
     public void dbClose(Connection con, Statement stmt) {
         try {
             if (stmt != null) stmt.close();
-            if (con != null) releaseConnection(con);
+            releaseConnection(con);
         } catch (Exception e) {
             e.printStackTrace();
         }
