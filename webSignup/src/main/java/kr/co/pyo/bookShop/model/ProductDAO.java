@@ -5,55 +5,55 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import kr.co.pyo.util.ConnectionPool;
 
 public class ProductDAO {
 
-    public ArrayList<ProductVO> getAllProducts() {
-        ArrayList<ProductVO> products = new ArrayList<>();
-        String sql = "SELECT * FROM Product";
-        Connection con = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
+	public ArrayList<ProductVO> getAllProducts() {
+	    ArrayList<ProductVO> products = new ArrayList<>();
+	    String sql = "SELECT * FROM Product";
+	    Connection con = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
 
-        try {
-            con = ConnectionPool.getInstance().dbCon();
-            pstmt = con.prepareStatement(sql);
-            rs = pstmt.executeQuery();
+	    try {
+	        con = ConnectionPool.getInstance().dbCon();
+	        pstmt = con.prepareStatement(sql);
+	        rs = pstmt.executeQuery();
 
-            while (rs.next()) {
-                ProductVO product = new ProductVO();
-                product.setBookID(rs.getString("bookID"));
-                product.setBookName(rs.getString("bookName"));
-                product.setUnitPrice(rs.getInt("unitPrice"));
-                product.setDescription(rs.getString("description"));
-                product.setAuthor(rs.getString("author"));
-                product.setPublisher(rs.getString("publisher"));
-                product.setCategory(rs.getString("category"));
-                product.setUnitsInStock(rs.getLong("unitsInStock"));
-                product.setCondition(rs.getString("productCondition"));
-                product.setFilename(rs.getString("filename"));
-                products.add(product);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            closeResources(rs, pstmt, con);
-        }
+	        while (rs.next()) {
+	            ProductVO product = new ProductVO();
+	            product.setBookID(rs.getString("bookID"));
+	            product.setBookName(rs.getString("bookName"));
+	            product.setUnitPrice(rs.getInt("unitPrice"));
+	            product.setDescription(rs.getString("description"));
+	            product.setAuthor(rs.getString("author"));
+	            product.setPublisher(rs.getString("publisher"));
+	            product.setCategory(rs.getString("category"));
+	            product.setUnitsInStock(rs.getLong("unitsInStock"));
+	            product.setCondition(rs.getString("productCondition"));
+	            product.setFilename(rs.getString("filename"));
+	            products.add(product);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        closeResources(rs, pstmt, con);
+	    }
 
-        return products;
-    }
+	    return products;
+	}
 
-    
     public ProductVO getProductById(String id) {
         String sql = "SELECT * FROM Product WHERE bookID = ?";
+        System.out.println("Querying product with ID: " + id); // 디버깅 메시지
         try (
             Connection con = ConnectionPool.getInstance().dbCon();
             PreparedStatement pstmt = con.prepareStatement(sql)
         ) {
             pstmt.setString(1, id);
+            System.out.println("Executing query: " + sql + " with ID: " + id); // 디버깅 메시지
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
                     ProductVO product = new ProductVO();
@@ -67,33 +67,16 @@ public class ProductDAO {
                     product.setUnitsInStock(rs.getLong("unitsInStock"));
                     product.setCondition(rs.getString("productCondition"));
                     product.setFilename(rs.getString("filename"));
+                    System.out.println("Product found: " + product.getBookName());
                     return product;
+                } else {
+                    System.out.println("No product found with ID: " + id);
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
-    }
-
-    
-    
-    public void updateProductQuantity(String id, int quantity) {
-        String sql = "UPDATE Product SET quantity = ? WHERE bookID = ?";
-        Connection con = null;
-        PreparedStatement pstmt = null;
-
-        try {
-            con = ConnectionPool.getInstance().dbCon();
-            pstmt = con.prepareStatement(sql);
-            pstmt.setInt(1, quantity);
-            pstmt.setString(2, id);
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            closeResources(null, pstmt, con);
-        }
     }
 
     public void addProduct(ProductVO product) {
@@ -116,44 +99,10 @@ public class ProductDAO {
             pstmt.setString(9, product.getCondition());
             pstmt.setString(10, product.getFilename());
             pstmt.setInt(11, product.getQuantity());
+
+            System.out.println("Executing query: " + sql); // 디버깅 메시지
             pstmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            closeResources(null, pstmt, con);
-        }
-    }
-
-    public void deleteProductById(String bookID) {
-        String sql = "DELETE FROM Product WHERE bookID = ?";
-        Connection con = null;
-        PreparedStatement pstmt = null;
-
-        try {
-            con = ConnectionPool.getInstance().dbCon();
-            pstmt = con.prepareStatement(sql);
-            pstmt.setString(1, bookID);
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            closeResources(null, pstmt, con);
-        }
-    }
-
-    public void deleteProductsByIds(List<String> bookIDs) {
-        String sql = "DELETE FROM Product WHERE bookID = ?";
-        Connection con = null;
-        PreparedStatement pstmt = null;
-
-        try {
-            con = ConnectionPool.getInstance().dbCon();
-            pstmt = con.prepareStatement(sql);
-            for (String bookID : bookIDs) {
-                pstmt.setString(1, bookID);
-                pstmt.addBatch(); // 배치 처리
-            }
-            pstmt.executeBatch(); // 실행
+            System.out.println("Product added successfully: " + product.getBookName());
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -165,7 +114,7 @@ public class ProductDAO {
         try {
             if (rs != null) rs.close();
             if (pstmt != null) pstmt.close();
-            if (con != null) con.close();
+            if (con != null) ConnectionPool.getInstance().releaseConnection(con);
         } catch (SQLException e) {
             e.printStackTrace();
         }
