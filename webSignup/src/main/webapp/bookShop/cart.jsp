@@ -85,10 +85,28 @@
                 </tbody>
             </table>
             <div class="btn-action">
-                <a href="products.jsp" class="btn btn-secondary"> &laquo; 쇼핑 계속하기</a>
+                <a href="javascript:void(0);" id="continueShopping" class="btn btn-secondary">쇼핑 계속하기</a>
                 <button type="submit" class="btn btn-danger">선택 삭제</button>
                 <a href="checkout.jsp" class="btn btn-primary">주문하기</a>
             </div>
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const continueShoppingButton = document.getElementById("continueShopping");
+
+                    if (continueShoppingButton) {
+                        continueShoppingButton.addEventListener("click", function () {
+                            // 메인페이지에서 장바구니 팝업을 열 경우
+                            if (window.opener && !window.opener.closed) {
+                                window.opener.location.href = './products.jsp';
+                                window.close();
+                            } else {
+                                // 상품목록 페이지에서 장바구니 팝업을 열 경우
+                                window.location.href = './products.jsp';
+                            }
+                        });
+                    }
+                });
+            </script>
         </form>
     </div>
 </body>

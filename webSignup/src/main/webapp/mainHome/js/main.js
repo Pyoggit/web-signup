@@ -210,5 +210,35 @@ document.addEventListener("DOMContentLoaded", function () {
             window.location.href = logoutButton.href;
         });
     }
+
+    // 장바구니 팝업창 열기
+    const cartButton = document.querySelector(".cart-btn");
+    if (cartButton) {
+        cartButton.addEventListener("click", function (event) {
+            event.preventDefault();
+
+            const popupWidth = 900;
+            const popupHeight = 700;
+
+            const screenWidth = window.screen.width;
+            const screenHeight = window.screen.height;
+
+            const popupX = Math.round((screenWidth - popupWidth) / 2);
+            const popupY = Math.round((screenHeight - popupHeight) / 2);
+
+            const popup = window.open(
+                cartButton.href,
+                "CartPopup",
+                `width=${popupWidth},height=${popupHeight},left=${popupX},top=${popupY},scrollbars=yes,resizable=yes`
+            );
+
+            if (!popup) {
+                alert("팝업 차단이 활성화되어 있습니다. 팝업을 허용해주세요.");
+            }
+        });
+    }
 });
+
+
+
 

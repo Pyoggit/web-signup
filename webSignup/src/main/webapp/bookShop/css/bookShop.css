@@ -28,7 +28,6 @@ a {
 }
 
 
-
 /* 메인 제목 (Jumbotron) */
 .jumbotron {
   background-color: none; 
@@ -113,6 +112,7 @@ form .form-group .btn {
 form .form-group .btn:hover {
   background-color: #004aad;
 }
+
 
 /* 상품 목록 */
 .product-list {
@@ -243,6 +243,7 @@ tfoot th {
   text-align: right;
 }
 
+
 /* 버튼 스타일 */
 .btn-action {
   margin-top: 2rem;
@@ -264,6 +265,3 @@ tfoot th {
 .btn-action .btn:hover {
   background-color: #218838;
 }
-
-
-
