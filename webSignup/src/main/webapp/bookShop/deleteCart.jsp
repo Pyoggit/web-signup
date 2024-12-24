@@ -6,7 +6,7 @@
     // 삭제할 상품 ID 가져오기
     String[] selectedIds = request.getParameterValues("selectedIds");
     if (selectedIds == null || selectedIds.length == 0) {
-        response.sendRedirect("cart.jsp");
+        out.println("<script>alert('삭제할 상품을 선택해주세요.'); history.back();</script>");
         return;
     }
 
@@ -16,6 +16,9 @@
         for (String id : selectedIds) {
             cartList.removeIf(product -> product.getBookID().equals(id));
         }
+    } else {
+        out.println("<script>alert('장바구니가 비어 있습니다.'); history.back();</script>");
+        return;
     }
 
     // 세션에 업데이트된 장바구니 저장
