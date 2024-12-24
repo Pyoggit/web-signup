@@ -75,23 +75,24 @@ public final class ConnectionPool {
         if (!free.isEmpty()) {
             Connection con = free.remove(free.size() - 1);
             used.add(con);
+            System.out.println("Connection acquired. Active connections: " + numCons + ", Free: " + free.size());
             return con;
         } else {
             throw new RuntimeException("모든 커넥션이 사용 중입니다.");
         }
     }
 
-    public void releaseConnection(Connection con) {
+    public synchronized void releaseConnection(Connection con) {
         if (con != null) {
-            synchronized (this) {
-                if (used.remove(con)) {
-                    free.add(con);
-                } else {
-                    try {
-                        con.close();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+            if (used.remove(con)) {
+                free.add(con);
+                System.out.println("Connection returned to pool. Free connections: " + free.size());
+            } else {
+                try {
+                    con.close();
+                    System.out.println("Connection closed as it was not part of the pool.");
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         }
@@ -130,6 +131,7 @@ public final class ConnectionPool {
         for (Connection con : free) {
             try {
                 con.close();
+                System.out.println("Connection closed from free pool.");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -139,11 +141,13 @@ public final class ConnectionPool {
         for (Connection con : used) {
             try {
                 con.close();
+                System.out.println("Connection closed from used pool.");
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
         used.clear();
         numCons = 0;
+        System.out.println("All connections closed. Total connections reset.");
     }
 }
