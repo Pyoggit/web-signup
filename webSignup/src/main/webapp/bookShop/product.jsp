@@ -6,7 +6,7 @@
 <%
     String id = request.getParameter("id");
     if (id == null || id.trim().isEmpty()) {
-        out.println("<div class='alert alert-warning'>유효한 ID가 전달되지 않았습니다.</div>");
+        out.println("<div class='alert alert-warning'>유효한 도서ID가 전달되지 않았습니다.</div>");
         return;
     }
 

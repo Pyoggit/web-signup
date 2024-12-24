@@ -3,6 +3,35 @@
 <%@ page import="kr.co.pyo.bookShop.model.ProductVO" %>
 <%@ page import="kr.co.pyo.bookShop.model.ProductDAO" %>
 <%@ include file="/includes/mainHeader.jsp" %>
+<%
+    // 로그인 확인
+    String writer = (String) session.getAttribute("userName");
+    String email = (String) session.getAttribute("userEmail");
+
+    if (writer == null || email == null) {
+%>
+        <script>
+            alert("로그인 하셔야 합니다.");
+            const popupWidth = 550;
+            const popupHeight = 800;
+
+            const screenWidth = window.screen.width;
+            const screenHeight = window.screen.height;
+
+            const popupX = Math.round((screenWidth - popupWidth) / 2);
+            const popupY = Math.round((screenHeight - popupHeight) / 2);
+
+            window.open(
+                '<%= request.getContextPath() %>/signup/login.jsp',
+                'LoginPopup',
+                `width=${popupWidth},height=${popupHeight},left=${popupX},top=${popupY},scrollbars=no,resizable=no`
+            );
+            history.back();
+        </script>
+<%
+        return;
+    }
+%>
 <html>
 <head>
     <title>상품 목록</title>
@@ -47,7 +76,7 @@
                         </div>
                         <div class="product-price"><%= product.getUnitPrice() %>원</div>
                         <div class="product-actions">
-                        		 <a href="${pageContext.request.contextPath}/bookShop/product.jsp?id=<%= product.getBookID() %>" class="btn btn-primary">상세 보기</a>
+                            <a href="${pageContext.request.contextPath}/bookShop/product.jsp?id=<%= product.getBookID() %>" class="btn btn-primary">상세 보기</a>
                             <a href="javascript:void(0);" class="btn btn-warning" onclick="addToCart('<%= product.getBookID() %>')">장바구니 추가</a>
                             <a href="./order.jsp?id=<%= product.getBookID() %>" class="btn btn-info">주문하기</a>
                         </div>

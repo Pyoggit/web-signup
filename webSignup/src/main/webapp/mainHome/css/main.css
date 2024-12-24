@@ -327,6 +327,13 @@ div.slideshow_indicator a.active {
     color: #333;
 }
 
+.user-login {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
 .user-login a {
     display: inline-block;
     padding: 10px 20px;
@@ -346,44 +353,66 @@ div.slideshow_indicator a.active {
 
 
 /* 버튼 공통 스타일 */
-.user-buttons, .user-login {
-    margin-top: 15px;
+.user-buttons {
     display: flex;
-    gap: 10px;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; /* 버튼 간 간격 */
+    margin-top: 1rem;
+    width: 90%; /* 부모 요소 폭에 맞춤 */
 }
 
-.user-buttons a,
-.user-login a {
-    display: inline-block;
-    padding: 10px 20px;
+.cart-btn {
+    background-color: #166cea;
+    padding: 12px 20px; /* 크기 조정 */
+    font-size: 1.1rem; /* 글자 크기 */
+    font-weight: bold;
+    text-align: center;
+    border-radius: 8px; /* 버튼 전체 둥글게 */
+    color: #fff;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%; /* 상단 버튼 폭을 적절히 조정 */
+    max-width: 300px; /* 최대 폭 설정 */
+    margin-bottom: 0.01px; /* 하단 버튼과 간격 */
+}
+
+.user-buttons-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px; /* 하단 버튼 간 간격 */
+    width: 100%; /* 하단 버튼 전체 정렬 */
+    max-width: 300px; /* 하단 버튼 최대 폭 설정 */
+}
+
+.mypage-btn,
+.logout-btn {
+    flex: 1; /* 두 버튼이 같은 크기 */
+    padding: 10px 15px; /* 크기 조정 */
     font-size: 1rem;
     font-weight: bold;
     text-align: center;
-    border-radius: 5px;
+    border-radius: 8px; /* 버튼 각각 둥글게 */
     color: #fff;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .mypage-btn {
-    background-color: #28a745;
+    background-color: #28a745; /* 마이페이지 색상 */
 }
 
 .logout-btn {
-    background-color: #d9534f;
+    background-color: #d9534f; /* 로그아웃 색상 */
 }
 
-.login-btn {
-    background-color: #166cea;
+.mypage-btn:hover,
+.logout-btn:hover {
+    transform: scale(1.03); /* 살짝 확대 효과 */
 }
 
-.user-buttons a:hover,
-.user-login a:hover {
+.cart-btn:hover {
     background-color: #004aa1;
-    transform: scale(1.05);
+    transform: scale(1.03); /* 살짝 확대 효과 */
 }
-
-
 
 
 

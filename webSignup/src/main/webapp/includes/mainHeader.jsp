@@ -36,7 +36,7 @@
 				</div></li>
 			<li class="dropdown"><a href="#" class="dropbtn">구매/판매</a>
 				<div class="dropdown-content">
-					<a href="${pageContext.request.contextPath}/bookShop/addProduct.jsp">상품등록하기</a> <a href="${pageContext.request.contextPath}/bookShop/cart.jsp">장바구니</a>
+					<a href="${pageContext.request.contextPath}/bookShop/addProduct.jsp">상품등록하기</a>
 				</div></li>
 			<li class="dropdown"><a href="#" class="dropbtn">상품</a>
 				<div class="dropdown-content">

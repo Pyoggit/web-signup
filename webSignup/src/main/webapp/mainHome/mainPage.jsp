@@ -52,7 +52,7 @@
 				</div></li>
 			<li class="dropdown"><a href="#" class="dropbtn">구매/판매</a>
 				<div class="dropdown-content">
-					<a href="${pageContext.request.contextPath}/bookShop/addProduct.jsp">상품등록하기</a> <a href="${pageContext.request.contextPath}/bookShop/cart.jsp">장바구니</a>
+					<a href="${pageContext.request.contextPath}/bookShop/addProduct.jsp">상품등록하기</a>
 				</div></li>
 			<li class="dropdown"><a href="#" class="dropbtn">상품</a>
 				<div class="dropdown-content">
@@ -153,22 +153,27 @@
 
 		<!-- 오른쪽: 사용자 정보 또는 로그인 -->
 		<section class="user-section">
-		    <h3>사용자 정보</h3>
+		  
 		    <% if (user != null) { %>
 		        <!-- 로그인된 상태 -->
 		        <div class="user-info">
-		            <p><strong>이름:</strong> <%= user.getName() %></p>
+						    <p><strong>이름:</strong> <%= user.getName() %></p>
 		            <p><strong>이메일:</strong> <%= user.getEmail() %></p>
 		            <p><strong>전화번호:</strong> <%= user.getPhone1() %>-<%= user.getPhone2() %>-<%= user.getPhone3() %></p>
-		        </div>
-		        <div class="user-buttons">
-		            <a href="${pageContext.request.contextPath}/signup/success.jsp" class="mypage-btn">
-		                마이페이지
-		            </a>
-		            <a href="${pageContext.request.contextPath}/logoutServlet.do" class="logout-btn">
-		                로그아웃
-		            </a>
-		        </div>
+						</div>
+						<div class="user-buttons">
+						    <a href="${pageContext.request.contextPath}/bookShop/cart.jsp" class="cart-btn">
+						        장바구니
+						    </a>
+						    <div class="user-buttons-row">
+						        <a href="${pageContext.request.contextPath}/signup/success.jsp" class="mypage-btn">
+						            마이페이지
+						        </a>
+						        <a href="${pageContext.request.contextPath}/logoutServlet.do" class="logout-btn">
+						            로그아웃
+						        </a>
+						    </div>
+						</div>
 		    <% } else { %>
 		        <!-- 로그아웃된 상태 -->
 		        <div class="user-login">
@@ -179,7 +184,6 @@
 		    <% } %>
 		</section>
 </main>
-
 
 <!-- Footer -->
 <footer>
