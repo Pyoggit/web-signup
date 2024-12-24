@@ -200,4 +200,70 @@ form .form-group .btn:hover {
 }
 
 
+/* 주문 확인 페이지 스타일 */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+thead {
+  background-color: #166cea;
+  color: #fff;
+  text-align: left;
+}
+
+thead th {
+  padding: 1rem;
+  font-size: 1rem;
+}
+
+tbody tr {
+  border-bottom: 1px solid #ddd;
+}
+
+tbody td {
+  padding: 0.8rem 1rem;
+  font-size: 0.9rem;
+}
+
+tfoot {
+  background-color: #f8f9fa;
+  font-weight: bold;
+}
+
+tfoot th {
+  padding: 1rem;
+  font-size: 1rem;
+  text-align: right;
+}
+
+/* 버튼 스타일 */
+.btn-action {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.btn-action .btn {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #28a745;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-action .btn:hover {
+  background-color: #218838;
+}
+
+
 
