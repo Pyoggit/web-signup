@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.*, kr.co.pyo.signup.model.SignupDAO, kr.co.pyo.signup.model.SignupVO" %>
 <%
-		String id = (String) session.getAttribute("userId");
+    String id = (String) session.getAttribute("userId");
     if (id == null) {
         response.sendRedirect("login.jsp");
         return;
@@ -19,7 +19,7 @@
     <title>마이페이지</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/signup/css/success.css">
 </head>
-<body>
+<body class="mypage">
     <div class="container">
         <h1>마이페이지</h1>
         <% if (message != null) { %>
