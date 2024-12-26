@@ -43,7 +43,7 @@
 <!-- Header 부분 -->
 <header>
     <div class="header-logo">
-        <i class="fa-solid fa-users"></i> <a href="#">Main</a>
+        <a href="#"><img src="${pageContext.request.contextPath}/mainHome/img/user-menu-male.png" /></a>
     </div>
     <ul class="header-menu">
 			<li class="dropdown"><a href="#" class="dropbtn">페이지소개</a>
@@ -120,36 +120,24 @@
     </section>
 
     <!-- 중앙: 게시판 -->
-    <section class="board-section" style="flex: 2;">
-        <h3>최근 게시글</h3>
-        <table border="1" cellspacing="0" cellpadding="5" style="width: 100%; text-align: center;">
-            <tr>
-                <th>번호</th>
-                <th>제목</th>
-                <th>작성자</th>
-                <th>작성일</th>
-            </tr>
-            <% if (boardList == null || boardList.isEmpty()) { %>
-						    <tr>
-						        <td colspan="4">등록된 게시글이 없습니다.</td>
-						    </tr>
-						<% } else { 
-						    for (FreeBoardVO board : boardList) { %>
-						    <tr>
-						        <td><%= board.getNum() %></td>
-						        <td>
-						            <a href="${pageContext.request.contextPath}/freeBoard/content.jsp?num=<%= board.getNum() %>">
-						                <%= board.getSubject() %>
-						            </a>
-						        </td>
-						        <td><%= board.getWriter() %></td>
-						        <td><%= sdf.format(board.getRegdate()) %></td>
-						    </tr>
-						<%   }
-						   } 
-						 %>
-        </table>
-    </section>
+		<section class="board-section" style="flex: 2;">
+		    <h3>최근 게시글</h3>
+		    <ul>
+		        <% if (boardList == null || boardList.isEmpty()) { %>
+		            <li>등록된 게시글이 없습니다.</li>
+		        <% } else { 
+		            for (FreeBoardVO board : boardList) { %>
+		            <li>
+		                <a href="${pageContext.request.contextPath}/freeBoard/content.jsp?num=<%= board.getNum() %>">
+		                    <%= board.getSubject() %>
+		                </a>
+		                <span><%= sdf.format(board.getRegdate()) %></span>
+		            </li>
+		        <%   }
+		           } 
+		        %>
+		    </ul>
+		</section>
 
 		<!-- 오른쪽: 사용자 정보 또는 로그인 -->
 		<section class="user-section">
