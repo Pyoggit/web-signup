@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
 
+/* 기본 스타일 */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -11,7 +12,7 @@ html {
   font-size: 12px;
 }
 
-body {
+body.main-body { /* body에 특정 클래스를 추가해 다른 페이지와 충돌 방지 */
   font-family: "Noto Sans KR", sans-serif;
   background-color: #f9f9f9;
 }
@@ -21,7 +22,7 @@ a {
 }
 
 /* header 부분 */
-header {
+header.main-header { /* header에 클래스 추가 */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -62,16 +63,11 @@ header {
   color: #fff;
 }
 
-.header-menu a {
-  border-radius: 5px;
-  font-size: 1rem;
-}
-
+/* 충돌 방지: 중복 정의 제거 */
 .header-menu a:hover {
   color: black;
   background-color: blueviolet;
 }
-
 
 /* 드롭다운 스타일 */
 .dropdown {
@@ -84,13 +80,13 @@ header {
   position: absolute;
   top: 100%;
   left: 0;
-  min-width: 120px; /* 넓이 조금 확대 */
-  background-color: #fff; /* 배경 색상 */
+  min-width: 120px;
+  background-color: #fff;
   border: 1px solid #ddd;
-  border-radius: 8px; /* 더 부드러운 모서리 */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* 자연스러운 그림자 */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   z-index: 1000;
-  transition: opacity 0.3s ease, transform 0.3s ease; /* 부드러운 등장 효과 */
+  transition: opacity 0.3s ease, transform 0.3s ease;
   opacity: 0;
   transform: translateY(10px);
 }
@@ -98,30 +94,27 @@ header {
 .dropdown:hover .dropdown-content {
   display: block;
   opacity: 1;
-  transform: translateY(0); /* 부드럽게 등장 */
+  transform: translateY(0);
 }
 
 .dropdown-content a {
   display: block;
-  padding: 15px 20px; /* 더 큰 여백 추가 */
+  padding: 15px 20px;
   color: #333;
-  font-size: 1rem; /* 글씨 조금 확대 */
-  text-align: left; /* 왼쪽 정렬 */
-  font-weight: bold; /* 강조된 글씨 */
+  font-size: 1rem;
+  text-align: left;
+  font-weight: bold;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .dropdown-content a:hover {
-  background-color: #166cea; /* 호버 시 강조된 배경색 */
-  color: #fff; /* 글씨색 변경 */
+  background-color: #166cea;
+  color: #fff;
 }
 
-/* 드롭다운 항목 간 구분선 */
 .dropdown-content a:not(:last-child) {
   border-bottom: 1px solid #e6e6e6;
 }
-
-
 
 .header-icons {
   list-style: none;
@@ -154,10 +147,8 @@ header {
   border: 1px solid #fff;
 }
 
-
 /* Footer 부분 */
-
-footer {
+footer.main-footer { /* Footer에 클래스 추가 */
   background-color: #f8f8f8;
   padding: 1rem 0;
   text-align: center;
@@ -170,6 +161,7 @@ footer {
 .footer-links {
   margin-bottom: 10px;
 }
+
 .footer-links ul {
   display: flex;
   justify-content: center;
