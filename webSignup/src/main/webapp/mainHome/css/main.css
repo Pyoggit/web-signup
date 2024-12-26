@@ -281,30 +281,42 @@ div.slideshow_indicator a.active {
   flex: 2;
 }
 
-.board-section table {
-  width: 100%;
-  border-collapse: collapse;
+.board-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.board-section th,
-.board-section td {
-  padding: 10px;
-  text-align: center;
-  border-bottom: 1px solid #ddd;
+.board-section li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.7rem; 
+  padding-bottom: 0.2rem; 
+  border-bottom: 1px solid #f1f1f1;
 }
 
-.board-section th {
-  background-color: #f4f4f4;
-  color: #333;
+.board-section li:last-child {
+   margin-bottom: 0; /* 마지막 항목의 간격 제거 */
+   border-bottom: none; /* 마지막 항목 구분선 제거 */
 }
 
 .board-section a {
   color: #166cea;
+  font-weight: bold;
+  transition: color 0.3s;
 }
 
 .board-section a:hover {
   text-decoration: underline;
+  color: #004aa1;
 }
+
+.board-section span {
+  color: #888;
+  font-size: 0.9rem;
+}
+
+
 
 .user-section {
     flex: 1;
