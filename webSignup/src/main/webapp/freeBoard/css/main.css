@@ -40,6 +40,15 @@ header {
 
 .header-logo i {
   font-size: 36px;
+  color: black;
+}
+
+.header-logo a{
+	color: #fff;
+}
+
+.header-logo i:hover{
+	color: #166cea;
 }
 
 .header-menu {
@@ -65,11 +74,6 @@ header {
 .header-menu a {
   border-radius: 5px;
   font-size: 1rem;
-}
-
-.header-menu a:hover {
-  color: black;
-  background-color: blueviolet;
 }
 
 
