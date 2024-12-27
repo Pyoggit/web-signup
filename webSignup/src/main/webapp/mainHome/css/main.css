@@ -35,11 +35,12 @@ header {
 
 .header-logo {
   font-size: 1.5rem;
-  color: #333;
+  color: #fff;
 }
 
-.header-logo i {
+.header-logo a {
   font-size: 36px;
+  color: #fff;
 }
 
 .header-menu {

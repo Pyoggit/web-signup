@@ -43,7 +43,7 @@
 <!-- Header 부분 -->
 <header>
     <div class="header-logo">
-        <a href="#"><img src="${pageContext.request.contextPath}/mainHome/img/user-menu-male.png" /></a>
+        <a href="#"><img src="${pageContext.request.contextPath}/mainHome/img/user-menu-male.png" />Main</a>
     </div>
     <ul class="header-menu">
 			<li class="dropdown"><a href="#" class="dropbtn">페이지소개</a>
