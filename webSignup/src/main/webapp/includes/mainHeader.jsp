@@ -25,8 +25,7 @@
     <!-- Header 부분 -->
     <header class="main-header">
         <div class="header-logo">
-            <i class="fa-solid fa-users"></i> 
-            <a href="${pageContext.request.contextPath}/mainHome/mainPage.jsp">Main</a>
+        	<a href="${pageContext.request.contextPath}/mainHome/mainPage.jsp"><img src="${pageContext.request.contextPath}/mainHome/img/user-menu-male.png" />Main</a>
         </div>
         <ul class="header-menu">
             <li class="dropdown">
