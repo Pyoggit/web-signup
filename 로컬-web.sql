@@ -169,3 +169,38 @@ commit;
 
 SELECT * FROM Product;
 
+-- 주문 내역 테이블
+CREATE TABLE OrderDetails (
+    orderID NUMBER(10) PRIMARY KEY,          -- 주문 ID
+    userID VARCHAR2(12) NOT NULL,            -- 회원 ID (외래키)
+    bookID VARCHAR2(50) NOT NULL,            -- 도서 ID (외래키)
+    orderDate TIMESTAMP DEFAULT SYSDATE,     -- 주문일
+    quantity NUMBER(10) NOT NULL,            -- 주문 수량
+    totalAmount NUMBER(10) NOT NULL          -- 총 결제 금액
+);
+
+-- 회원 테이블과 외래키 설정
+ALTER TABLE OrderDetails
+ADD CONSTRAINT FK_OrderDetails_User FOREIGN KEY (userID) REFERENCES SIGNUP(ID);
+
+-- 도서 테이블과 외래키 설정
+ALTER TABLE OrderDetails
+ADD CONSTRAINT FK_OrderDetails_Product FOREIGN KEY (bookID) REFERENCES Product(bookID);
+
+-- 시퀀스 생성
+CREATE SEQUENCE OrderDetails_SEQ
+START WITH 1
+INCREMENT BY 1
+NOMAXVALUE
+NOCYCLE;
+
+-- 회원ID별 주문내역 확인
+SELECT od.orderID, od.orderDate, p.bookName, od.quantity, od.totalAmount
+FROM OrderDetails od
+JOIN Product p ON od.bookID = p.bookID
+WHERE od.userID ='aaa123'
+ORDER BY od.orderDate DESC;
+
+
+SELECT * FROM OrderDetails;
+
