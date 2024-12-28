@@ -33,10 +33,13 @@
             <p><strong>우편번호:</strong> <%= user.getZipcode() %></p>
             <p><strong>주소:</strong> <%= user.getAddress1() %> <%= user.getAddress2() %></p>
         </div>
-        <form action="/webSignup/signup/updatePage.jsp" method="get" style="margin-top: 20px;">
+        <form action="${pageContext.request.contextPath}/signup/orderDetails.jsp" method="get" style="margin-top: 20px;">
+    				<button type="submit" class="orders">주문내역 보기</button>
+				</form>
+        <form action="${pageContext.request.contextPath}/signup/updatePage.jsp" method="get" style="margin-top: 20px;">
             <button type="submit" class="update">회원정보 수정</button>
         </form>
-        <form action="/webSignup/signup/deletePage.jsp" method="get" style="margin-top: 20px;">
+        <form action="${pageContext.request.contextPath}/signup/deletePage.jsp" method="get" style="margin-top: 20px;">
             <button type="submit" class="delete">회원 탈퇴</button>
         </form>
     </div>
