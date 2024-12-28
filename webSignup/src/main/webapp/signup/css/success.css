@@ -58,10 +58,10 @@ body {
     background-color: #a71d2a;
 }
 
-.container .logout {
+.container .orders {
     background-color: #6c757d;
 }
 
-.container .logout:hover {
+.container .orders:hover {
     background-color: #5a6268;
 }
