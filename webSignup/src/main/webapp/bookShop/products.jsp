@@ -44,6 +44,12 @@
                 window.location.href = './products.jsp';
             }
         }
+        
+        function orderNow(bookID) {
+            if (confirm('상품을 주문하시겠습니까?')) {
+                window.location.href = './checkout.jsp?id=' + bookID; // 주문 페이지로 이동
+            }
+        }
     </script>
 </head>
 <body>
@@ -78,7 +84,7 @@
                         <div class="product-actions">
                             <a href="${pageContext.request.contextPath}/bookShop/product.jsp?id=<%= product.getBookID() %>" class="btn btn-primary">상세 보기</a>
                             <a href="javascript:void(0);" class="btn btn-warning" onclick="addToCart('<%= product.getBookID() %>')">장바구니 추가</a>
-                            <a href="./order.jsp?id=<%= product.getBookID() %>" class="btn btn-info">주문하기</a>
+                            <a href="javascript:void(0);" class="btn btn-success" onclick="orderNow('<%= product.getBookID() %>')">주문하기</a>
                         </div>
                     </div>
                 </div>
