@@ -57,7 +57,7 @@
                 </tfoot>
             </table>
             <div class="btn-action">
-                <a href="orderSuccess.jsp" class="btn btn-success">결제 완료</a>
+                <a href="orderSuccess.jsp" class="btn btn-success">결제 하기</a>
             </div>
         <%
             }
