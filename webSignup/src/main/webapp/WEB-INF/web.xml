@@ -29,10 +29,28 @@
     <servlet-name>commentWriteProcServlet</servlet-name>
     <url-pattern>/commentWriteProcServlet.do</url-pattern>
   </servlet-mapping>
-   <resource-ref>
+  <!-- <resource-ref>
     <description>ConnectionPool</description>
     <res-ref-name>jdbc/myOracle</res-ref-name>
     <res-type>javax.sql.DataSource</res-type>
     <res-auth>Container</res-auth>
   </resource-ref>
+  <servlet>
+    <description></description>
+    <display-name>productFindSelectAction</display-name>
+    <servlet-name>productFindSelectAction</servlet-name>
+    <servlet-class>kr.co.pyo.action.shop.ProductFindSelectAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>productFindSelectAction</servlet-name>
+    <url-pattern>/productFindSelectAction.do</url-pattern>
+  </servlet-mapping> -->
+  <error-page>
+    <error-code>404</error-code>
+    <location>/error/error404.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>500</error-code>
+    <location>/error/error500.jsp</location>
+  </error-page>
 </web-app>
