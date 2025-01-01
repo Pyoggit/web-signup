@@ -38,7 +38,7 @@
 
     // 페이징 처리
     int currentPage = 1; // 현재 페이지
-    int pageSize = 10; // 페이지당 상품 수
+    int pageSize = 5; // 페이지당 상품 수
     String pageParam = request.getParameter("page");
 
     if (pageParam != null) {
