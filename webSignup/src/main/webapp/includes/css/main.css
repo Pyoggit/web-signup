@@ -44,6 +44,15 @@ header.main-header { /* header에 클래스 추가 */
   color: #fff;
 }
 
+.header-logo i {
+  font-size: 36px;
+  color: black;
+}
+
+.header-logo i:hover{
+	color: #166cea;
+}
+
 .header-logo a:hover {
   color: #fff;
 }
