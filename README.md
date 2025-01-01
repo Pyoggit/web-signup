@@ -203,4 +203,4 @@ MultipartRequest multi = new MultipartRequest(request, realFolder, maxSize, encT
 
 
 ## 💻 실행 화면
-
+https://github.com/user-attachments/assets/0eb1ebf5-51c1-4e3d-969b-1354cb0a2f43
