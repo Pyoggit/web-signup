@@ -43,6 +43,15 @@ header {
   color: #fff;
 }
 
+.header-logo i {
+  font-size: 36px;
+  color: black;
+}
+
+.header-logo i:hover{
+	color: #166cea;
+}
+
 .header-menu {
   display: flex;
   gap: 1.5rem;
