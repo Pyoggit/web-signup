@@ -268,8 +268,8 @@ tfoot th {
     display: flex;
     justify-content: center; /* 페이징 버튼은 가운데 정렬 */
     align-items: center;
-    margin-top: 20px; /* 위쪽 여백 */
-    padding: 20px 0; /* 컨테이너의 상하 여백 */
+    margin-top: 10px; /* 위쪽 여백 */
+    padding: 15px 0; /* 컨테이너의 상하 여백 */
     gap: 20px; /* 검색창과 페이징 버튼 사이의 간격 */
     position: relative;
 }
