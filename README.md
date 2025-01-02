@@ -44,6 +44,10 @@
    - 문의하기(Q&A): 답변 형태로 게시글 연결
    - 공지사항: 읽기 전용 게시판
    - 작성자 본인만 글 수정 및 삭제 가능 (비밀번호 확인 추가)
+<details>
+<summary>💻문의화면</summary>
+   <img src="https://github.com/user-attachments/assets/6dd5d52d-253c-4664-a75f-6a050d9ed4f0" alt="문의하기보기" width="70%">
+</details>
 
 4. **상품 및 쇼핑몰 기능**
    - 상품 등록: 이미지 업로드(cos 라이브러리 사용), 상품 정보 저장
