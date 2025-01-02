@@ -49,6 +49,12 @@
    <img src="https://github.com/user-attachments/assets/6dd5d52d-253c-4664-a75f-6a050d9ed4f0" alt="문의하기보기" width="70%">
 </details>
 
+<details>
+<summary>💻공지화면</summary>
+   <img src="https://github.com/user-attachments/assets/64029037-7698-4f5d-8439-325189f91e55" alt="공지사항보기" width="70%">
+</details>
+
+
 4. **상품 및 쇼핑몰 기능**
    - 상품 등록: 이미지 업로드(cos 라이브러리 사용), 상품 정보 저장
    - 상품 목록 페이징: 한 페이지에 5개씩 표시
